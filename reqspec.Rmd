@@ -9,7 +9,12 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
+## Functions:
+- Help functions: simulates mutations based on branch length, 
+- Simulates DNA sequence based on a fixed population size
+- Simulates DNA sequence based on a variable (continuous) population size
+- Simulates DNA sequence based on a variable (bottleneck) population size
+- Various functions that provides different properties of the simulated data
 
 
 
