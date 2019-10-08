@@ -1,13 +1,8 @@
 ---
 title: "reqspec"
 author: "Elias Arildskov, Maiken Bak Poulsen and Camilla Kudahl"
-date: "1 okt 2019"
-output: pdf_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ## Functions:
 - Help functions: simulates mutations based on branch length
