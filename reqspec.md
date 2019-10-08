@@ -5,11 +5,12 @@ author: "Elias Arildskov, Maiken Bak Poulsen and Camilla Kudahl"
 
 
 ## Functions:
-- Help functions: simulates mutations based on branch length
-- Simulates DNA sequence based on a fixed population size. Made by everybody
-- Simulates DNA sequence based on a variable (continuous) population size. Made by Camilla.
-- Simulates DNA sequence based on a variable (bottleneck) population size. Made by Maiken.
-- Various functions that provides different properties of the simulated data. For example: site frequency spectrum (SFS), visualization of ancestral tree, total number of mutations (S_total). Made by Elias.
+- simSeq: simulates mutations based on branch length. Made function together. Maiken and Camilla tests and write documentation.
+- Simulates DNA sequence based on a fixed population size. Made by Camilla and Maiken
+- Simulates DNA sequence based on a variable (continuous) population size. Made by Camilla and Maiken
+- Simulates DNA sequence based on a variable (bottleneck) population size. Made by Camilla and Maiken
+- Various functions that provides different properties of data. For example: site frequency spectrum (SFS), SNP matrix, total number of mutations (S_total), different ways of estimating mutation rate. Made by Elias.
+- If time: visualization of ancestral tree. Made by everybody
 
 
 ## Classes
@@ -17,6 +18,14 @@ author: "Elias Arildskov, Maiken Bak Poulsen and Camilla Kudahl"
 - Population with variable (continuous) size
 - Population with variable (bottleneck) size
 
+Elias changes/specify print function for the different classes.
+
+## Vignettes:
+
+We make 2 vignettes. One for the functions that simulates data and one for the functions that analyzes data.
+- Everybody is responsible for the vignette. Each person adds documentation for what they are working with. Elias creates the vignette.
 
 
+## Variables:
+Here we write what we call the different variables to ensure that they are consistent.
 
