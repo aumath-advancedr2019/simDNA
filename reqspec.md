@@ -29,3 +29,6 @@ We make 2 vignettes. One for the functions that simulates data and one for the f
 ## Variables:
 Here we write what we call the different variables to ensure that they are consistent.
 
+- SNP: the SNP matrix
+- SFS: the site frequence spectrum
+
