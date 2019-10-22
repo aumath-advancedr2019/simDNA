@@ -21,8 +21,7 @@ simBranchSudExpansion <- function(n,expansionTime,proportion){
 
   res <- diff(c(0,invCumuBranch))
   class(res) <- "sudExpansionPop"
-  return(res)
-
+  return(rev(res))
 }
 
 

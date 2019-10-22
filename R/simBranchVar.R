@@ -16,6 +16,6 @@ simBranchVar <- function(n,expRate){
   }
   res <- diff(c(0,invCumuBranch))
   class(res) <- "varPop"
-  return(res)
+  return(rev(res))
 
 }
