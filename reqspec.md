@@ -6,10 +6,11 @@ author: "Elias Arildskov, Maiken Bak Poulsen and Camilla Kudahl"
 
 ## Functions:
 - simSeq: simulates mutations based on branch length. Made function together. Maiken and Camilla tests and write documentation.
-- simBranchFixed: help function (to simDNAseq) that simulates branchlengths from a population of fixed size. Made by Camilla and Maiken
-- simBranchVar: help function (to simDNAseq) that simulates branchlengths from an exponentially growing population size. Made by Camilla and Maiken
-- simBranchSudExpansion: help function (to simDNAseq) that simulates branchlengths from a suddenly expanded population size (aka. bottleneck). Made by Camilla and Maiken
-- simDNAseq: simulates DNA sequences based on branchlengths (belonging to 1 of our 3 classes) using the simSeq (help-)function. Made by Camilla and Maiken
+- simBranchFixed: help function (to simBranch) that simulates branchlengths from a population of fixed size. Made by Camilla and Maiken.
+- simBranchVar: help function (to simBranch) that simulates branchlengths from an exponentially growing population size. Made by Camilla and Maiken.
+- simBranchSudExpansion: help function (to simBranch) that simulates branchlengths from a suddenly expanded population size (aka. bottleneck). Made by Camilla and Maiken.
+- simBranch: simulates branchlenghts based on 1 of our 3 classes using the above help functions. Made by Camilla and Maiken.
+- simDNAseq: simulates DNA sequences based on branchlengths (belonging to 1 of our 3 classes) using the simSeq (help-)function. Made by Camilla and Maiken.
 - Various functions that provides different properties of data. For example: site frequency spectrum (SFS), SNP matrix, total number of mutations (S_total), different ways of estimating mutation rate. Made by Elias.
 - If time: visualization of ancestral tree. Made by everybody
 
@@ -39,4 +40,5 @@ Here we write what we call the different variables to ensure that they are consi
 - expRate: the rate of the exponentially growing population
 - expansionTime: parameter determining the time of expansion
 - proportion: parameter determining the fraction of the population size before the expansion
+- popType: the type of population size (1 of our 3 classes)
 
