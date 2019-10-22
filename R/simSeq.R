@@ -23,6 +23,7 @@ simSeq <- function(branchLen, seqLen, mutRate){
                                           seqAfterCoal[[ (coalEvent[2]) ]])
     seqAfterCoal <- seqAfterCoal[-(coalEvent[2])]
   }
+  return(sequences)
 }
 
 
