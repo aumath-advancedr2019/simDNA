@@ -1,5 +1,12 @@
-# Input: SNP or matrix with gene sequences
+#' SFS
+#'
+#' @description  The function SFS calcultes the site frequency spectrum.
+#'
+#' @details The function calculates the site frequency spectrum and outputs it as a vector. That is, the i'th entry of the output vector is the number of mutations that happened on a branch where exactly i sequences has coalesced.
+#'
+#'
 
+# Input: SNP or matrix with gene sequences
 SFS <- function(SNP){
   count <- colSums(SNP)
   # If there is anything other than 0's and 1's in the matrix, throw an error
@@ -22,3 +29,7 @@ SFS <- function(SNP){
 # SNP <- matrix(0,4,8)
 # SNP[1,2] = SNP[1:2,3] = SNP[2:4,5] = SNP[2:4,6] = SNP[,8] <- 1
 # SNP[,4] <- 1
+
+
+
+# REMEMBER: TO RUN ROXYGEN HELP FILES: devtools::document()
