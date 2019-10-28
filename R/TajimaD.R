@@ -1,3 +1,22 @@
+#' Tajima's D
+#'
+#' @description
+#' The function calculates Tajima's D.
+#'
+#' @usage
+#' TajimaD(c(3,0,2,1,0,0,0))
+#'
+#' @param SFS
+#' The input is a vector with the site frequency spectrum.
+#'
+#' @return The function returns Tajima's D.
+#'
+#' @examples
+#' TajimaD(c(3,0,2,1,0,0,0))
+#'
+#' @export
+
+
 TajimaD <- function(SFS){
   mutRate <- mutRate(SFS)
   # Estimate of mutation rate based on pairwise difference:
@@ -26,9 +45,9 @@ TajimaD <- function(SFS){
 }
 
 
-D <- TajimaD(c(1,0,0,1,0))
-print(D)
-D[[1]]
+# D <- TajimaD(c(1,0,0,1,0))
+# print(D)
+# D[[1]]
 
 
 
@@ -40,4 +59,4 @@ print.TajD <- function(d){
   cat("If Tajima's D >> 0 (often: >2), it could suggest population subdivision.")
 }
 
-print(D)
+# print(D)
