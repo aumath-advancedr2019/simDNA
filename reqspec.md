@@ -51,3 +51,6 @@ Here we write what we call the different variables to ensure that they are consi
 - simDNAseq: er det brugervenligt at samle alle funktioner i en?
 - TajimaD: skal den have print funktion?
 - TajimaD: kan man bruge andre end Watterson og pairwise difference?
+
+
+Vignettes: simulateDNA, analyzeDNA
