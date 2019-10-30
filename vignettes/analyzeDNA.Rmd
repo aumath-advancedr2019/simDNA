@@ -1,6 +1,8 @@
 ---
-title: "analyzeDNA"
+title: "Analyze DNA"
 output: rmarkdown::html_vignette
+header-includes:
+  - \usepackage{dsfont}
 vignette: >
   %\VignetteIndexEntry{analyzeDNA}
   %\VignetteEngine{knitr::rmarkdown}
@@ -17,3 +19,120 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(simDNA)
 ```
+
+This vignette will explain more about using the package simDNA for analyzing DNA. For more information about simulating DNA using this package, please consult the simulateDNA vignette.
+
+# Functions of the package
+
+We will here give a tutorial of how to use the different functions in the package as well as describe some of the theory behind. But first we will simulate some data to test our functions on.
+
+```{r}
+#fixPop <- simDNAseq(n = 10, seqLen = 15, mutRate = 2, popType = "fixedPop")
+#VarPop <- simDNAseq(n = 10, seqLen = 15, mutRate = 2, popType = "varPop",
+#        expRate = 1.5)
+
+Mat <- matrix(c(0,1,1,0,1,0,0,
+                0,0,1,0,0,0,1,
+                0,0,0,0,1,0,0,
+                0,0,1,0,0,0,1),4,7,byrow=T)
+
+#print(fixPop)
+#print(varPop)
+```
+
+## Single-Nucleotide Polymorphism matrix
+
+The Single-Nucleotide Polymorphism (SNP) matrix is used to present DNA sequences in a compact manner, by only displaying positions on which one or more sequences has a mutation. It can be used to summarize DNA sequences where the sequence length is constant, which excludes i.e. seguences where insertions and deletions take place. 
+
+The function SNP takes as input a matrix with DNA sequences. Each row is a DNA sequence represented by 0's and 1's, where 1 indicates that a mutation has happened, 0 that no mutations has happened.
+It outputs a list. The first element in the list is a vector containing the positions on which one or more mutations has occured. The second element is the SNP matrix itself.
+
+### Example:
+```{r}
+SNP(Mat)
+```
+
+
+
+## Site frequency spectrum
+The site frequency spectrum is often used for analyzing DNA. It can for instance be used to estimate the mutation rate and to give an indication of the population structure.
+
+The site frequency spectrum (SFS) is a summary statistic used for summarizing information about mutations. It is represented as the vector $\xi = (\xi_1,...,\xi_{n-1})$, where $n$ is the number of samples and $\xi_i$ is the number of mutations that has happened on a branch where exactly $i$ sequences has coalesced.
+
+The function SFS calculates the site frequency spectrum. It has input either the SNP matrix or a matrix with DNA sequences where each row is a sequence. Whichever matrix one uses as input, 1 represents a mutation, 0 no mutations.
+If the input matrix has anything other than a 0 or 1 in one or more entries, it will raise an error. Similarly it will raise an error if there exists a column with all 1's, meaning that a position exists on which all the sequences has a mutation. This indicates that the ancestral state was determined incorrectly.
+
+### Examples:
+```{r}
+SFS(Mat)
+
+# I TVIVL OM HVORDAN JEG KØRER DET SÅ DEN VISER ADVARSLEN I STEDET FOR AT STOPPE KØRSEL
+#SFS(matrix(c(1,1,0,1),2,2))
+```
+
+## Mutation rate
+There are many ways to estimate the mutation rate. We will here consider some estimators that are unbiased under the standard neutral coalescent model where we assume no natural selection, no recombination, constant population size and no subdivision (the population has not separated into two or more groups). The estimators we consider are all based on the site frequency spectrum $\xi$ and the fact that
+$$
+E[\xi_i] = \frac{\theta}{i},
+$$
+where $\theta$ is the mutation rate.
+Thus $i\xi_i,\ i=1,...,n-1$ are all unbiased estimators of $\theta$. 
+ 
+### Watterson's estimator
+A commonly used stimator for the mutation rate is Watterson's estimator which is given as
+$$
+\hat{\theta}_w = \frac{\sum_{i=1}^{n-1} \xi_i}{\sum_{i=1}^{n-1} \frac1i}.
+$$
+This is an unbiased estimator and consistent. That is, it has mean 0, and as the sample size approaches infinity, the variance approaches 0.
+
+### Pairwise difference estimator
+Another unbiased estimator is the pairwise difference. The pairwise difference is defined as
+$$
+\hat{\theta}_{\pi} = \frac{1}{{n \choose 2}} \sum_{i=1}^{n-1}i(n-i)\xi_i.
+$$
+While this estimator is unbiased, it is not consistent as the variance converges to $\frac\theta3 + \frac29 \theta^2$ as the sample size approaches infinity. Consistency in an estimator is often a property that one wishes for in an estimator, but despite this, the pairwise difference estimator is often used as an estimator for the mutation rate.
+
+### Examples:
+Watterson's estimator and the pairwise difference estimator can be found using the function mutRate, which takes the site frequency spectrum as input.
+
+```{r}
+#mutRate(c(2,1,0,0,1,0,0))
+mutRate(SFS(Mat))
+```
+
+The estimators $i\xi_i,\ i=1,...,n-1$ can be found in the following way:
+
+```{r}
+SFS(Mat)*(1:length(SFS(Mat)))
+```
+
+
+## Tajima's D
+Tajima's D is defined as
+$$
+D = \frac{\hat{\theta}_\pi - \hat{\theta}_w}{\sqrt{\text{Var}(\hat{\theta}_\pi - \hat{\theta}_w)}}
+$$
+and is used to test neutrality. That is, to test if the assumptions under the standard neutral coalescent model is reanonable. 
+
+If $D \approx 0$, it would indicate that the standard neutral model is reasonable.
+
+If $D<<0$, it could be an indication of a growing population size, either a sudden expansion or an exponentially growing population.
+
+If $D>>0$, it could indicate population subdivision.
+
+One often say that $D$ deviates significantly from 0 if $D$ is lesser than -2 or greater than +2.
+
+Tajima's D can be calculated with the function TajimaD.
+
+## Examples:
+INDSÆT EKSEMPEL FRA KONSTANT OG FRA VOKSENDE POPULATION. KONKLUDER (FORHÅBENTLIG) AT VI KAN SPORE POPULATIONSSTR VHA TAJIMA'S D.
+
+
+# MANGLER STADIG
+Få kørt eksempler med den simulerede DNA (simulationen virker ikke).
+Find ud af hvordan man laver kørsel hvor error vises fremfor blot at fejlmelde (under SFS).
+Brug dsfont package til at skrive $\mathds{E}$ (kan ikke få det til at virke).
+
+
+# References
+Wakeley J. (2009) *Coalescent Theory: An Introduction*. Colorado: Roberts and Company Publishers.
