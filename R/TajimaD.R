@@ -40,7 +40,7 @@ TajimaD <- function(SFS){
   denominator <- sqrt(e1*S+e2*S*(S-1))
   # Tajima's D:
   D <- numerator/denominator
-  class(D) <- "TajD"
+  #class(D) <- "TajD"
   return(D)
 }
 
@@ -52,11 +52,11 @@ TajimaD <- function(SFS){
 
 
 
-print.TajD <- function(d){
-  cat("Tajima's D was calculated to be", d[[1]], "\n")
-  cat("If Tajima's D is approximately 0 (often: in the interval [-2,2]), it could suggest a standard neutral model. \n")
-  cat("If Tajima's D << 0 (often: <2), it could suggest a growing population size or bottleneck.\n")
-  cat("If Tajima's D >> 0 (often: >2), it could suggest population subdivision.")
-}
+# print.TajD <- function(d){
+#   cat("Tajima's D was calculated to be", d[[1]], "\n")
+#   cat("If Tajima's D is approximately 0 (often: in the interval [-2,2]), it could suggest a standard neutral model. \n")
+#   cat("If Tajima's D << 0 (often: <2), it could suggest a growing population size or bottleneck.\n")
+#   cat("If Tajima's D >> 0 (often: >2), it could suggest population subdivision.")
+# }
 
 # print(D)
