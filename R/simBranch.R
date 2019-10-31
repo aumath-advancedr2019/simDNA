@@ -11,15 +11,15 @@
 #a vector of branch lengths in the following order (T_2, ..., T_n) using help functions
 #simBranchFixed, simBranchVar and simBranchSudExpansion.
 simBranch <- function(n, seqLen, mutRate, expRate, expansionTime, proportion, popType){
-  if(popType=="fixedPop"){
+  if(tolower(popType)=="fixedpop"){
     return(simBranchFixed(n))
   }
 
-  if(popType=="varPop"){
+  if(tolower(popType)=="varpop"){
     return(simBranchVar(n, expRate))
   }
 
-  if(popType=="sudExpansionPop"){
+  if(tolower(popType)=="sudexppop"){
     return(simBranchSudExpansion(n, expansionTime, proportion))
   }
   else(warning("Type of population not defined"))

@@ -8,21 +8,21 @@
 #' simDNAseq(n, seqLen, mutRate, popType, ...)
 #'
 #' ## S3 method for class 'fixedPop'
-#' simDNAseq(n, seqLen, mutRate, expRate=NULL, expansionTime=NULL,
+#' simDNAseq(n, seqLen, mutRate, popType="fixedPop", expRate=NULL, expansionTime=NULL,
 #'         proportion=NULL)
 #'
 #' ## S3 method for class 'varPop'
-#' simDNAseq(n, seqLen, mutRate, expRate, expansionTime=NULL,
+#' simDNAseq(n, seqLen, mutRate, popType="varPop", expRate, expansionTime=NULL,
 #'         proportion=NULL)
 #'
-#' ## S3 method for class 'sudExpansionPop'
-#' simDNAseq(n, seqLen, mutRate, expRate=NULL, expansionTime, proportion)
+#' ## S3 method for class 'sudExpPop'
+#' simDNAseq(n, seqLen, mutRate, popType="sudExpPop", expRate=NULL, expansionTime, proportion)
 #'
 #' @param n the sample size.
 #' @param seqLen the length of the DNA sequences.
 #' @param mutRate the mutation rate.
 #' @param popType a string indicating which population type to simulate from.
-#' Should be either '\code{fixedPop}', '\code{varPop}' or '\code{sudExpansionPop}'.
+#' Should be either '\code{fixedPop}', '\code{varPop}' or '\code{sudExpPop}'.
 #' See details.
 #' @param expRate the rate of the exponentially growing population, only used
 #' when \code{popType} is '\code{varPop}'.
@@ -39,7 +39,7 @@
 #' \deqn{f(x)=exp(-\lambdax),}
 #' where \eqn{\lambda} is the rate of the exponentially growing population.
 #'
-#' If \code{popType} is '\code{sudExpansionPop}' we simulate the brances of the
+#' If \code{popType} is '\code{sudExpPop}' we simulate the brances of the
 #' ancestral tree from a suddenly expanded population. This means that backwards in
 #' time the population size is \eqn{N} before the expansion and \eqn{\alphaN} after
 #' the expansion. The decline in population size happened at time \eqn{bN}
@@ -66,7 +66,7 @@
 #'         expRate = 1.5)
 #'
 #' ## An example with suddenly expanded population size
-#' simDNAseq(n = 25, seqLen = 30, mutRate = 1.5, expansionTime = 50,
+#' simDNAseq(n = 25, seqLen = 30, mutRate = 1.5, popType = "sudExpPop", expansionTime = 2,
 #'         proportion = 0.9)
 #'
 #' @export
@@ -76,25 +76,24 @@ simDNAseq <- function(n, seqLen, mutRate, expRate, expansionTime, proportion, po
   UseMethod("simDNAseq", branchLen)
 }
 
-simDNAseq.fixedPop <- function(n, seqLen, mutRate, expRate=NULL,
+simDNAseq.fixedPop <- function(n, seqLen, mutRate, popType="fixedPop", expRate=NULL,
                                expansionTime=NULL, proportion=NULL){
-  branchLen <- simBranchFixed(n) #might not be necessary
+  branchLen <- simBranchFixed(n)
   return(simSeq(branchLen, seqLen, mutRate))
-  #should probably return the SNP matrix instead
 }
 
-simDNAseq.varPop <- function(n, seqLen, mutRate, expRate,
+simDNAseq.varPop <- function(n, seqLen, mutRate, popType="varPop", expRate,
                                expansionTime=NULL, proportion=NULL){
-  branchLen <- simBranchVar(n, expRate) #might not be necessary
+  branchLen <- simBranchVar(n, expRate)
   return(simSeq(branchLen, seqLen, mutRate))
-  #should probably return the SNP matrix instead
 }
 
 
-simDNAseq.sudExpansionPop <- function(n, seqLen, mutRate, expRate=NULL,
+simDNAseq.sudExpPop <- function(n, seqLen, mutRate, popType="sudExpPop", expRate=NULL,
                                expansionTime, proportion){
-  branchLen <- simBranchSudExpansion(n, expanstionTime, proportion) #might not be necessary
-  return(simSeq(branchLen, seqLen, mutRate))
-  #should probably return the SNP matrix instead
+  branchLen <- simBranchSudExpansion(n, expansionTime, proportion)
+  res <- simSeq(branchLen, seqLen, mutRate)
+  class(res) <- c(class(branchLen), class(res))
+  return(res)
 }
 

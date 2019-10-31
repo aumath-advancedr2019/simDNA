@@ -17,8 +17,8 @@ simBranchVar <- function(n, expRate){
   for(i in 1:(n-1)){
     invCumuBranch[i] <- inv(cumuBranch[i])
   }
-  res <- diff(c(0, invCumuBranch))
+  res <- rev(diff(c(0, invCumuBranch)))
   class(res) <- "varPop"
-  return(rev(res))
+  return(res)
 
 }

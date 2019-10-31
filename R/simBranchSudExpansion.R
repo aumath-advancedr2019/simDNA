@@ -21,9 +21,9 @@ simBranchSudExpansion <- function(n, expansionTime, proportion){
     invCumuBranch[i] <- inv(cumuBranch[i])
   }
 
-  res <- diff(c(0, invCumuBranch))
-  class(res) <- "sudExpansionPop"
-  return(rev(res))
+  res <- rev(diff(c(0, invCumuBranch)))
+  class(res) <- "sudExpPop"
+  return(res)
 }
 
 
