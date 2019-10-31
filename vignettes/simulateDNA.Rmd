@@ -17,3 +17,11 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(simDNA)
 ```
+
+This vignette will explain more about using the package simDNA for simulating DNA from various populations. For more information about analyzing DNA using this package, please consult the analyzeDNA vignette.
+
+# The standard coalescent model
+We will start by explaining the theory behind the simulating function \verb|simDNAseq| in the \verb|simDNA| package.
+
+
+

@@ -18,7 +18,7 @@ author: "Elias Arildskov, Maiken Bak Poulsen and Camilla Kudahl"
 ## Classes
 - Population with fixed size "fixedPop"
 - Population with variable (exponentially growing) size "varPop"
-- Population with variable (sudden expansion aka. bottleneck) size "sudExpansionPop"
+- Population with variable (sudden expansion aka. bottleneck) size "sudExpPop"
 
 Elias changes/specify print function for the different classes.
 
@@ -47,7 +47,6 @@ Here we write what we call the different variables to ensure that they are consi
 - we have used both n and SampSize for the same. What to do?
 - SFS: smarter way to do first if() - tabulate()
 - SFS: Skal vi lave warning eller error når søjle med rene 1-taller?
-- simBranchFixed: gør hurtigere ved at bruge vektor
 - simDNAseq: er det brugervenligt at samle alle funktioner i en?
 - TajimaD: skal den have print funktion?
 - TajimaD: kan man bruge andre end Watterson og pairwise difference?
