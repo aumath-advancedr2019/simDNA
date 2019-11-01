@@ -15,13 +15,15 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(simDNA)
+#library(simDNA)
 ```
 
 This vignette will explain more about using the package simDNA for simulating DNA from various populations. For more information about analyzing DNA using this package, please consult the analyzeDNA vignette.
 
 # The standard coalescent model
-We will start by explaining the theory behind the simulating function \verb|simDNAseq| in the \verb|simDNA| package.
+We will start by explaining the theory behind the simulating function simDNAseq in the simDNA package. When looking at the standard coalescent model we are interested in analyzing how a given population evolved over time (measured in generations). This is typically done by taking a sample of size $n$ from the entire population and finding their most recent common ancestor.
+
+When going backwards in time, we start out by having $n$ individuals (lineages) and end up with one common ancestor after the occurrence of $n-1$ coalescent events (i.e. two individuals 'merge' into one). During this span of time we thus see that the total number of individuals decreases by one after each coalescent event. In other words there are $n, n-1, \dots, 2$ individuals present respectively during this time. We denote by $T_i$ for $i=2,\dots ,n$ the time during which there were $i$ lineages present as illustrated in the figure from Wakeley below.
 
 
 
