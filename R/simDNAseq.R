@@ -62,11 +62,11 @@
 #' simDNAseq(n = 10, seqLen = 15, mutRate = 2, popType = "fixedPop")
 #'
 #' ## An example with variable population size
-#' simDNAseq(n = 8, seqLen = 20, mutRate = 0.5, popType = "varPop",
+#' simDNAseq(n = 8, seqLen = 20, mutRate = 5, popType = "varPop",
 #'         expRate = 1.5)
 #'
 #' ## An example with suddenly expanded population size
-#' simDNAseq(n = 25, seqLen = 30, mutRate = 1.5, popType = "sudExpPop", expansionTime = 2,
+#' simDNAseq(n = 25, seqLen = 30, mutRate = 8, popType = "sudExpPop", expansionTime = 2,
 #'         proportion = 0.9)
 #'
 #' @export
