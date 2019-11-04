@@ -6,6 +6,9 @@
 \usage{
 SNP(matrix(c(0,0,0,1,0,0,0,0,1),nrow=3))
 }
+\arguments{
+\item{DNAseq}{A matrix with DNA sequences. Each row is a DNA sequence represented by 0's and 1's, where 1 indicates that a mutation has happened,0 that no mutations has happened.}
+}
 \value{
 The output of the function is a list.
 The first element in the list is a vector containing the positions on which one or more mutations has occured.

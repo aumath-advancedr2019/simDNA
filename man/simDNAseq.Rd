@@ -7,15 +7,15 @@
 simDNAseq(n, seqLen, mutRate, popType, ...)
 
 ## S3 method for class 'fixedPop'
-simDNAseq(n, seqLen, mutRate, expRate=NULL, expansionTime=NULL,
+simDNAseq(n, seqLen, mutRate, popType="fixedPop", expRate=NULL, expansionTime=NULL,
         proportion=NULL)
 
 ## S3 method for class 'varPop'
-simDNAseq(n, seqLen, mutRate, expRate, expansionTime=NULL,
+simDNAseq(n, seqLen, mutRate, popType="varPop", expRate, expansionTime=NULL,
         proportion=NULL)
 
-## S3 method for class 'sudExpansionPop'
-simDNAseq(n, seqLen, mutRate, expRate=NULL, expansionTime, proportion)
+## S3 method for class 'sudExpPop'
+simDNAseq(n, seqLen, mutRate, popType="sudExpPop", expRate=NULL, expansionTime, proportion)
 }
 \arguments{
 \item{n}{the sample size.}
@@ -33,7 +33,7 @@ when \code{popType} is '\code{varPop}'.}
 the expansion.}
 
 \item{popType}{a string indicating which population type to simulate from.
-Should be either '\code{fixedPop}', '\code{varPop}' or '\code{sudExpansionPop}'.
+Should be either '\code{fixedPop}', '\code{varPop}' or '\code{sudExpPop}'.
 See details.}
 }
 \value{
@@ -54,7 +54,7 @@ from an exponentially growing population (forwards in time). This means that the
 \deqn{f(x)=exp(-\lambdax),}
 where \eqn{\lambda} is the rate of the exponentially growing population.
 
-If \code{popType} is '\code{sudExpansionPop}' we simulate the brances of the
+If \code{popType} is '\code{sudExpPop}' we simulate the brances of the
 ancestral tree from a suddenly expanded population. This means that backwards in
 time the population size is \eqn{N} before the expansion and \eqn{\alphaN} after
 the expansion. The decline in population size happened at time \eqn{bN}
@@ -65,11 +65,11 @@ the expansion. The decline in population size happened at time \eqn{bN}
 simDNAseq(n = 10, seqLen = 15, mutRate = 2, popType = "fixedPop")
 
 ## An example with variable population size
-simDNAseq(n = 8, seqLen = 20, mutRate = 0.5, popType = "varPop",
+simDNAseq(n = 8, seqLen = 20, mutRate = 5, popType = "varPop",
         expRate = 1.5)
 
 ## An example with suddenly expanded population size
-simDNAseq(n = 25, seqLen = 30, mutRate = 1.5, expansionTime = 50,
+simDNAseq(n = 25, seqLen = 30, mutRate = 8, popType = "sudExpPop", expansionTime = 2,
         proportion = 0.9)
 
 }
