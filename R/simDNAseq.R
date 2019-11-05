@@ -2,7 +2,7 @@
 #'
 #' @description
 #' \code{simDNAseq} simulates a segregating sites matrix consisting of \code{n}
-#' sequences based on \code{popType}.
+#' sequences based on the type of population size.
 #'
 #' @usage
 #' simDNAseq(n, seqLen, mutRate, popType, ...)
@@ -47,15 +47,9 @@
 #'
 #' @return
 #' \code{simDNAseq} returns a simulated segregating sites matrix.
-#' That is a \code{n} times \code{seqLen} matrix consisting of zeroes and ones, where the
-#' number 1 indicates that a mutation occured at this specific site.
-#'
-#' @references
-#' Tavaré, S. (2004) \emph{Ancestral Inference in Population Genetics}.
-#' Berlin: Springer-Verlag.
-#'
-#' Wakeley J. (2009) \emph{Coalescent Theory: An Introduction}. Colorado:
-#' Roberts and Company Publishers.
+#' That is a \code{n} times \code{seqLen} matrix consisting of zeroes and ones. Here the
+#' number 1 indicates that a mutation occured at this specific site, and the number 0
+#' indicates that no mutation occured.
 #'
 #' @examples
 #' ## An example with fixed population size
@@ -68,6 +62,13 @@
 #' ## An example with suddenly expanded population size
 #' simDNAseq(n = 25, seqLen = 30, mutRate = 8, popType = "sudExpPop", expansionTime = 2,
 #'         proportion = 0.9)
+#'
+#' @references
+#' Tavaré, S. (2004) \emph{Ancestral Inference in Population Genetics}.
+#' Berlin: Springer-Verlag.
+#'
+#' Wakeley J. (2009) \emph{Coalescent Theory: An Introduction}. Colorado:
+#' Roberts and Company Publishers.
 #'
 #' @export
 

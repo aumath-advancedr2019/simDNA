@@ -23,13 +23,13 @@ This vignette will explain more about using the package simDNA for simulating DN
 # The standard coalescent model
 We will start by explaining the theory behind the simulating function simDNAseq in the simDNA package. When looking at the standard coalescent model we are interested in analyzing how a given population evolved over time (measured in generations). This is typically done by taking a sample of size $n$ from the entire population and finding their most recent common ancestor.
 
-When going backwards in time, we start out by having $n$ individuals (lineages) and end up with one common ancestor after the occurrence of $n-1$ coalescent events (i.e. two individuals 'merge' into one). During this span of time we thus see that the total number of individuals decreases by one after each coalescent event. In other words there are $n, n-1, \dots, 2$ individuals present respectively during this time. We denote by $T_i$ for $i=2,\dots ,n$ the time (aka. the level) during which there were $i$ lineages present (called branch lengths) as illustrated in the figure from Wakeley below.
+When going backwards in time, we start out by having $n$ individuals (lineages) and end up with one common ancestor after the occurrence of $n-1$ coalescent events (i.e. two individuals 'merge' into one $n-1$ times). During this span of time we thus see that the total number of individuals decreases by one after each coalescent event. In other words there are $n, n-1, \dots, 2$ individuals present respectively during this time. We denote by $T_i$ for $i=2,\dots ,n$ the time (aka. the level) during which there were $i$ lineages present (called branch lengths) as illustrated in the figure from Wakeley below (rephrase).
 
 Mutations are the primary factor contributing to coalescent events, and once we have observed an ancestral tree these are sprinkled on according to a Poisson distribution. That is, given we are in level $k$ of the tree, the number of mutations is determined by $Pois(T_k k \theta/2)$ where $\theta$ is the mutation rate. 
 
-When we have observed mutations as described above, we are interested in the segregating sites matrix. That is, for each individual we want to find the positions deviating from the nucleotide in the ancestral DNA sequence. Such mutant nucleotides is denoted by the number 1 and 0 otherwise.
+When we have observed mutations as described above, we are interested in the segregating sites matrix. That is, for each individual we want to find the positions deviating from the nucleotide in the ancestral DNA sequence. Such mutant nucleotides are denoted by the number 1 and by 0 otherwise.
 
-Since the branch lengths are generated differently according to the type of the population size these are explained seperately.
+Since the branch lengths are generated differently according to the type of the population size, these are explained seperately.
 
 ## Fixed population size
 Assuming that the underlying population has a constant size $N$ during the span of time, we know that 
@@ -41,22 +41,22 @@ simDNAseq(n = 10, seqLen = 15, mutRate = 2, popType = "fixedPop")
 ```
 
 ## Variable population size
-Assuming that the underlying population has a variable size during the span of time, we denote by $N(j)$ the number of sequences in the population $j$ generations before the present. For $j=0$ we let $N \equiv N(0)$ denote the number of generations in the present. Furthermore we let $$ f(x)=\frac{N(j)}{N}, \quad \text{for } \frac{j-1}{N} < x \le \frac{j}{N}, \,\, j=1,2,\dots $$
+Assuming that the underlying population has a variable size during the span of time, we denote by $N(j)$ the number of sequences in the population $j$ generations before the present. For $j=0$ we let $N := N(0)$ denote the number of individuals in the present. Furthermore we let $$ f(x)=\frac{N(j)}{N}, \quad \text{for } \frac{j-1}{N} < x \le \frac{j}{N}, \,\, j=1,2,\dots $$
 denote the relative size function and 
 $$ \Lambda(t) = \int_0^t \frac{1}{f(x)}\, dx $$
-denote the integrated intensity function. This function is essential in the algorithm for simulating branch lengths in a population of variable size. 
+denote the integrated intensity function. This function is essential in the algorithm for simulating branch lengths in a population of variable size. The algorithm is the following
 
 1. Simulate $T_k \sim exp\big(\binom{k}{2}\big)$ for $k=2,\dots,n$.  
 2. Calculate the cumulative sum $(S_n,S_{n-1}\dots,S_2):=(T_n,T_n+T_{n-1},\dots,T_n+\cdots +T_2)$.  
 3. Calculate $\big(\Lambda^{-1}(S_n),\dots,\Lambda^{-1}(S_2)\big)$.  
-4. Return $\big(\Lambda^{-1}(S_n), \Lambda(S_{n-1})-\Lambda^{-1}(S_n),\dots,\Lambda^{-1}(S_2)-\Lambda^{-1}(S_3)\big)$.  
+4. Return $\big(\Lambda^{-1}(S_n), \Lambda^{-1}(S_{n-1})-\Lambda^{-1}(S_n),\dots,\Lambda^{-1}(S_2)-\Lambda^{-1}(S_3)\big)$.  
 
 Note that since $\Lambda(t)$ depends on the relative size function, the above algorithm looks different for different types of population sizes. 
 
 ### Exponentially growing population size
 Assuming that the size of the population grows exponentially (forwards in time) we can use the above algorithm with 
-$$ f(x)=exp(- \lambda x) $$
-where $\lambda$ denotes the rate of increase in population size.
+$$ f(x)=exp(- \lambda x), $$
+where $\lambda$ denotes the rate of which the population size increases.
 
 When specifying the population type to be 'varPop' in the function simDNAseq the simulated branch lengths come from the algorithm using the above relative size function. We use these lengths to compute the segregating sites matrix. An example hereof could be
 ```{r eval=FALSE, include=FALSE}
@@ -72,8 +72,13 @@ $$ f(x)= \left\{
 \alpha & x\ge b.
 \end{array} \right. $$
 
-When specifying the population type to be 'sudExpPop' in the function simDNAseq the simulated branch lengths come from the algorithm using the above relative size function. We use these lengths to compute the segregating sites matrix. An example hereof could be
+When specifying the population type to be 'sudExpPop' in the function simDNAseq, the simulated branch lengths come from the algorithm using the above relative size function. We use these lengths to compute the segregating sites matrix. An example hereof could be
 ```{r eval=FALSE, include=FALSE}
 #CHANGE THE SETTINGS FOR THIS CHUNK
 simDNAseq(n = 25, seqLen = 30, mutRate = 8, popType = "sudExpPop", expansionTime = 2, proportion = 0.9)
 ```
+
+# References
+Wakeley J. (2009) *Coalescent Theory: An Introduction*. Colorado: Roberts and Company Publishers.
+
+Tavaré, S. (2004) *Ancestral Inference in Population Genetics*. Berlin: Springer-Verlag.

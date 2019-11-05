@@ -38,12 +38,13 @@ See details.}
 }
 \value{
 \code{simDNAseq} returns a simulated segregating sites matrix.
-That is a \code{n} times \code{seqLen} matrix consisting of zeroes and ones, where the
-number 1 indicates that a mutation occured at this specific site.
+That is a \code{n} times \code{seqLen} matrix consisting of zeroes and ones. Here the
+number 1 indicates that a mutation occured at this specific site, and the number 0
+indicates that no mutation occured.
 }
 \description{
 \code{simDNAseq} simulates a segregating sites matrix consisting of \code{n}
-sequences based on \code{popType}.
+sequences based on the type of population size.
 }
 \details{
 If \code{popType} is '\code{fixedPop}' we simulate the branches of the ancestral
