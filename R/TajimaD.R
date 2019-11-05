@@ -20,6 +20,9 @@
  # pairwise difference, link til deres help.
 
 TajimaD <- function(SFS){
+  if(min(SFS)<0){
+    stop('Entries in SFS must be non-negative')
+  }
   mutRate <- mutRate(SFS)
   # Estimate of mutation rate based on pairwise difference:
   pairwDiff <- mutRate$pairwDiff
