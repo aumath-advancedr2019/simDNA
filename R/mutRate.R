@@ -35,6 +35,9 @@
 # Generelt: cleanup. Ret tastefejl.
 
 mutRate <- function(SFS){
+  if(min(SFS)<0){
+    stop('Entries in SFS must be non-negative')
+  }
   res <- list()
   # Watterson's estimator (the numerator is the number of segregating sites):
   res$Watterson <- sum(SFS)/sum(1/c(1:length(SFS)))

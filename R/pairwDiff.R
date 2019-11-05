@@ -19,6 +19,9 @@
 #' @export
 
 pairwDiff <- function(SFS){
+  if(min(SFS)<0){
+    stop('Entries in SFS must be non-negative')
+  }
   # The sample size:
   sampSize <- length(SFS) +1
   # Helping vectors:
