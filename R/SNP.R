@@ -27,19 +27,21 @@
 #' @export
 #'
 
+# INPUT: RET TIL segSites
+# Arguments: kun første linje. Resten skal i details (hvis det skal være der).
+# Brug huxtable, drop positions vektoren. Fint nok med 1,2,3,... som rækkenavne.
+# Så er det ikke længere liste den spytter ud.
+
 SNP <- function(DNAseq){
   count <- colSums(DNAseq)
   positions <- which(count>0)
+  # If there is anything other than 0's and 1's in the matrix, throw an error
+  if(sum(length(which(DNAseq==0))+length(which(DNAseq==1)))!=ncol(DNAseq)*nrow(DNAseq)){
+    stop('The DNAseq matrix is only allowed to contain zeroes and ones')
+  }
   mat <- DNAseq[,positions]
   res <- list()
   res$positions <- positions
   res$SNPmat <- mat
   return(res)
 }
-
-
-# mat <- matrix(0,3,5)
-# mat[1,2] <- mat[3,3] <- 1
-# mat
-#
-# SNP(mat)
