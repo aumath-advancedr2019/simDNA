@@ -80,13 +80,17 @@ simDNAseq <- function(n, seqLen, mutRate, expRate, expansionTime, proportion, po
 simDNAseq.fixedPop <- function(n, seqLen, mutRate, popType="fixedPop", expRate=NULL,
                                expansionTime=NULL, proportion=NULL){
   branchLen <- simBranchFixed(n)
-  return(simSeq(branchLen, seqLen, mutRate))
+  res <- simSeq(branchLen, seqLen, mutRate)
+  class(res) <- c(class(branchLen), class(res))
+  return(res)
 }
 
 simDNAseq.varPop <- function(n, seqLen, mutRate, popType="varPop", expRate,
                                expansionTime=NULL, proportion=NULL){
   branchLen <- simBranchVar(n, expRate)
-  return(simSeq(branchLen, seqLen, mutRate))
+  res <- simSeq(branchLen, seqLen, mutRate)
+  class(res) <- c(class(branchLen), class(res))
+  return(res)
 }
 
 
@@ -96,5 +100,23 @@ simDNAseq.sudExpPop <- function(n, seqLen, mutRate, popType="sudExpPop", expRate
   res <- simSeq(branchLen, seqLen, mutRate)
   class(res) <- c(class(branchLen), class(res))
   return(res)
+}
+
+print.fixedPop <- function(x, ...){
+  res <- x[1:nrow(x),1:ncol(x)]
+  class(res) <- class(x)
+  print.table(res)
+}
+
+print.varPop <- function(x, ...){
+  res <- x[1:nrow(x),1:ncol(x)]
+  class(res) <- class(x)
+  print.table(res)
+}
+
+print.sudExpPop <- function(x, ...){
+  res <- x[1:nrow(x),1:ncol(x)]
+  class(res) <- class(x)
+  print.table(res)
 }
 
