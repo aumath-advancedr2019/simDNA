@@ -24,6 +24,7 @@ This vignette will explain more about using the package simDNA for simulating DN
 We will start by explaining the theory behind the simulating function simDNAseq in the simDNA package. When looking at the standard coalescent model we are interested in analyzing how a given population evolved over time (measured in generations). This is typically done by taking a sample of size $n$ from the entire population and finding their most recent common ancestor.
 
 When going backwards in time, we start out by having $n$ individuals (lineages) and end up with one common ancestor after the occurrence of $n-1$ coalescent events (i.e. two individuals 'merge' into one $n-1$ times). During this span of time we thus see that the total number of individuals decreases by one after each coalescent event. In other words there are $n, n-1, \dots, 2$ individuals present respectively during this time. We denote by $T_i$ for $i=2,\dots ,n$ the time (aka. the level) during which there were $i$ lineages present (called branch lengths) as illustrated in the figure from Wakeley below (rephrase).
+![Title](Tree.png)
 
 Mutations are the primary factor contributing to coalescent events, and once we have observed an ancestral tree these are sprinkled on according to a Poisson distribution. That is, given we are in level $k$ of the tree, the number of mutations is determined by $Pois(T_k k \theta/2)$ where $\theta$ is the mutation rate. 
 
