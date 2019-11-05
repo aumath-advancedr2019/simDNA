@@ -7,7 +7,7 @@
 SFS(matrix(c(0,1,0,1,0,0,0,0,0),nrow=3))
 }
 \arguments{
-\item{SNP}{The input is a SNP (single-nucleotide polymorphism) matrix, or a matrix with DNA sequences, where each row is a sequence. The matrix should have a 1 where a mutation has occured and a 0 otherwise. If this is not the case, it will cause an error. Also, an error will be caused if there exists a position on which all sequences have a mutation, as this is an indication that the ancestral state is in fact not the ancestral state.}
+\item{X}{Matrix; either a SNP or a segregating sites matrix, see details. RYK RESTEN TIL DETAILS where each row is a sequence. The matrix should have a 1 where a mutation has occured and a 0 otherwise. If this is not the case, it will cause an error. Also, an error will be caused if there exists a position on which all sequences have a mutation, as this is an indication that the ancestral state is in fact not the ancestral state.}
 }
 \value{
 The function returns a vector with the site frequency spectrum

@@ -7,7 +7,7 @@
 mutRate(c(2,1,0,0,0))
 }
 \arguments{
-\item{SFS}{The input is a vector with the site frequency spectrum.}
+\item{SFS}{Vector with the site frequency spectrum.}
 }
 \value{
 The function returns a list with Watterson's estimator and the pairwise difference estimator

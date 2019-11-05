@@ -24,6 +24,10 @@ simDNAseq(n, seqLen, mutRate, popType="sudExpPop", expRate=NULL, expansionTime, 
 
 \item{mutRate}{the mutation rate.}
 
+\item{popType}{a string indicating which population type to simulate from.
+Should be either '\code{fixedPop}', '\code{varPop}' or '\code{sudExpPop}'.
+See details.}
+
 \item{expRate}{the rate of the exponentially growing population, only used
 when \code{popType} is '\code{varPop}'.}
 
@@ -31,10 +35,6 @@ when \code{popType} is '\code{varPop}'.}
 
 \item{proportion}{parameter \eqn{0< \alpha \le 1} determining the fraction of the population size before
 the expansion.}
-
-\item{popType}{a string indicating which population type to simulate from.
-Should be either '\code{fixedPop}', '\code{varPop}' or '\code{sudExpPop}'.
-See details.}
 }
 \value{
 \code{simDNAseq} returns a simulated segregating sites matrix.

@@ -72,35 +72,38 @@
 #'
 #' @export
 
-simDNAseq <- function(n, seqLen, mutRate, expRate, expansionTime, proportion, popType){
+simDNAseq <- function(n, seqLen, mutRate, popType, expRate, expansionTime, proportion){
   branchLen <- simBranch(n, seqLen, mutRate, expRate, expansionTime, proportion, popType)
-  UseMethod("simDNAseq", branchLen)
-}
-
-simDNAseq.fixedPop <- function(n, seqLen, mutRate, popType="fixedPop", expRate=NULL,
-                               expansionTime=NULL, proportion=NULL){
-  branchLen <- simBranchFixed(n)
   res <- simSeq(branchLen, seqLen, mutRate)
   class(res) <- c(class(branchLen), class(res))
   return(res)
+  #UseMethod("simDNAseq", branchLen)
 }
 
-simDNAseq.varPop <- function(n, seqLen, mutRate, popType="varPop", expRate,
-                               expansionTime=NULL, proportion=NULL){
-  branchLen <- simBranchVar(n, expRate)
-  res <- simSeq(branchLen, seqLen, mutRate)
-  class(res) <- c(class(branchLen), class(res))
-  return(res)
-}
-
-
-simDNAseq.sudExpPop <- function(n, seqLen, mutRate, popType="sudExpPop", expRate=NULL,
-                               expansionTime, proportion){
-  branchLen <- simBranchSudExpansion(n, expansionTime, proportion)
-  res <- simSeq(branchLen, seqLen, mutRate)
-  class(res) <- c(class(branchLen), class(res))
-  return(res)
-}
+# simDNAseq.fixedPop <- function(n, seqLen, mutRate, popType="fixedPop", expRate=NULL,
+#                                expansionTime=NULL, proportion=NULL){
+#   branchLen <- simBranchFixed(n)
+#   res <- simSeq(branchLen, seqLen, mutRate)
+#   class(res) <- c(class(branchLen), class(res))
+#   return(res)
+# }
+#
+# simDNAseq.varPop <- function(n, seqLen, mutRate, popType="varPop", expRate,
+#                                expansionTime=NULL, proportion=NULL){
+#   branchLen <- simBranchVar(n, expRate)
+#   res <- simSeq(branchLen, seqLen, mutRate)
+#   class(res) <- c(class(branchLen), class(res))
+#   return(res)
+# }
+#
+#
+# simDNAseq.sudExpPop <- function(n, seqLen, mutRate, popType="sudExpPop", expRate=NULL,
+#                                expansionTime, proportion){
+#   branchLen <- simBranchSudExpansion(n, expansionTime, proportion)
+#   res <- simSeq(branchLen, seqLen, mutRate)
+#   class(res) <- c(class(branchLen), class(res))
+#   return(res)
+# }
 
 print.fixedPop <- function(x, ...){
   res <- x[1:nrow(x),1:ncol(x)]
