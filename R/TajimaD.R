@@ -7,7 +7,7 @@
 #' TajimaD(c(3,0,2,1,0,0,0))
 #'
 #' @param SFS
-#' The input is a vector with the site frequency spectrum.
+#' Vector with the site frequency spectrum.
 #'
 #' @return The function returns Tajima's D.
 #'
@@ -16,6 +16,8 @@
 #'
 #' @export
 
+# Details: skriv formel (med Watterson's theta etc). Skriv ikke Watterson's og
+ # pairwise difference, link til deres help.
 
 TajimaD <- function(SFS){
   mutRate <- mutRate(SFS)
@@ -27,8 +29,8 @@ TajimaD <- function(SFS){
   numerator <- pairwDiff - Watterson
   # Calculations needed for the denominator:
   sampSize <- length(SFS) +1
-  a1 <- sum(1:(sampSize-1))
-  a2 <- sum((1:(sampSize-1))^2)
+  a1 <- sum(1/(1:(sampSize-1)))
+  a2 <- sum(1/((1:(sampSize-1))^2))
   b1 <- (sampSize+1)/(3*(sampSize-1))
   b2 <- 2*(sampSize^2+sampSize+3)/(9*sampSize*(sampSize-1))
   c1 <- b1-1/a1
@@ -40,23 +42,5 @@ TajimaD <- function(SFS){
   denominator <- sqrt(e1*S+e2*S*(S-1))
   # Tajima's D:
   D <- numerator/denominator
-  #class(D) <- "TajD"
   return(D)
 }
-
-
-# D <- TajimaD(c(1,0,0,1,0))
-# print(D)
-# D[[1]]
-
-
-
-
-# print.TajD <- function(d){
-#   cat("Tajima's D was calculated to be", d[[1]], "\n")
-#   cat("If Tajima's D is approximately 0 (often: in the interval [-2,2]), it could suggest a standard neutral model. \n")
-#   cat("If Tajima's D << 0 (often: <2), it could suggest a growing population size or bottleneck.\n")
-#   cat("If Tajima's D >> 0 (often: >2), it could suggest population subdivision.")
-# }
-
-# print(D)

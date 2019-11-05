@@ -7,7 +7,7 @@
 #' mutRate(c(2,1,0,0,0))
 #'
 #' @param SFS
-#' The input is a vector with the site frequency spectrum.
+#' Vector with the site frequency spectrum.
 #'
 #' @return
 #' The function returns a list with Watterson's estimator and the pairwise difference estimator
@@ -22,6 +22,17 @@
 #'
 #' @export
 
+# Prøv og link til help for paiirwDiff
+
+# RET HVER GANG DER ER LISTE: SE princomp
+
+# Fjern output fra eksempler.
+
+# Details: forklar kort hvad site frequency spectrum er. Hver gang.
+
+# Details: hav enten formel der er brugt eller reference.
+
+# Generelt: cleanup. Ret tastefejl.
 
 mutRate <- function(SFS){
   res <- list()

@@ -44,23 +44,17 @@ Mat <- matrix(c(0,1,1,0,1,0,0,
 
 The Single-Nucleotide Polymorphism (SNP) matrix is used to present DNA sequences in a compact manner, by only displaying positions on which one or more sequences has a mutation. It can be used to summarize DNA sequences where the sequence length is constant, which excludes i.e. seguences where insertions and deletions take place. 
 
-The function SNP takes as input a matrix with DNA sequences. Each row is a DNA sequence represented by 0's and 1's, where 1 indicates that a mutation has happened, 0 that no mutations has happened.
-It outputs a list. The first element in the list is a vector containing the positions on which one or more mutations has occured. The second element is the SNP matrix itself.
-
 ### Example:
 ```{r}
 SNP(Mat)
 ```
-
+FORKLAR OUTPUT GENNEM EKSEMPEL
 
 
 ## Site frequency spectrum
 The site frequency spectrum is often used for analyzing DNA. It can for instance be used to estimate the mutation rate and to give an indication of the population structure.
 
-The site frequency spectrum (SFS) is a summary statistic used for summarizing information about mutations. It is represented as the vector $\xi = (\xi_1,...,\xi_{n-1})$, where $n$ is the number of samples and $\xi_i$ is the number of mutations that has happened on a branch where exactly $i$ sequences has coalesced.
-
-The function SFS calculates the site frequency spectrum. It has input either the SNP matrix or a matrix with DNA sequences where each row is a sequence. Whichever matrix one uses as input, 1 represents a mutation, 0 no mutations.
-If the input matrix has anything other than a 0 or 1 in one or more entries, it will raise an error. Similarly it will raise an error if there exists a column with all 1's, meaning that a position exists on which all the sequences has a mutation. This indicates that the ancestral state was determined incorrectly.
+The site frequency spectrum (SFS) is a summary statistic used for summarizing information about mutations. It is represented as the vector $\xi = (\xi_1,...,\xi_{n-1})$, where $n$ is the number of samples and $\xi_i$ is the number of mutations that has happened on a branch where exactly $i$ sequences has coalesced. FORKLAR UDEN AT BRUGE BRANCH.
 
 ### Examples:
 ```{r}
@@ -69,9 +63,11 @@ SFS(Mat)
 # I TVIVL OM HVORDAN JEG KØRER DET SÅ DEN VISER ADVARSLEN I STEDET FOR AT STOPPE KØRSEL
 #SFS(matrix(c(1,1,0,1),2,2))
 ```
+FORKLAR EVT EKSEMPLET
+
 
 ## Mutation rate
-There are many ways to estimate the mutation rate. We will here consider some estimators that are unbiased under the standard neutral coalescent model where we assume no natural selection, no recombination, constant population size and no subdivision (the population has not separated into two or more groups). The estimators we consider are all based on the site frequency spectrum $\xi$ and the fact that
+There are many ways to estimate the mutation rate. We will here consider some estimators that are unbiased under the standard neutral coalescent model where we assume no natural selection, no recombination, constant population size and no subdivision (the population has not separated into two or more groups). These estimators can be used for all coalescent types, but are only guaranteed to be unbiased under these assumptions. The estimators we consider are all based on the site frequency spectrum $\xi$ and the fact that
 $$
 E[\xi_i] = \frac{\theta}{i},
 $$
@@ -83,7 +79,7 @@ A commonly used stimator for the mutation rate is Watterson's estimator which is
 $$
 \hat{\theta}_w = \frac{\sum_{i=1}^{n-1} \xi_i}{\sum_{i=1}^{n-1} \frac1i}.
 $$
-This is an unbiased estimator and consistent. That is, it has mean 0, and as the sample size approaches infinity, the variance approaches 0.
+This is an unbiased estimator and consistent. That is, it has mean $\theta$, and as the sample size approaches infinity, the variance approaches 0.
 
 ### Pairwise difference estimator
 Another unbiased estimator is the pairwise difference. The pairwise difference is defined as
@@ -100,17 +96,12 @@ Watterson's estimator and the pairwise difference estimator can be found using t
 mutRate(SFS(Mat))
 ```
 
-The estimators $i\xi_i,\ i=1,...,n-1$ can be found in the following way:
-
-```{r}
-SFS(Mat)*(1:length(SFS(Mat)))
-```
 
 
 ## Tajima's D
 Tajima's D is defined as
 $$
-D = \frac{\hat{\theta}_\pi - \hat{\theta}_w}{\sqrt{\text{Var}(\hat{\theta}_\pi - \hat{\theta}_w)}}
+D = \frac{\hat{\theta}_\pi - \hat{\theta}_w}{\sqrt{\widehat{\text{Var}}(\hat{\theta}_\pi - \hat{\theta}_w)}}
 $$
 and is used to test neutrality. That is, to test if the assumptions under the standard neutral coalescent model is reanonable. 
 
@@ -132,6 +123,7 @@ INDSÆT EKSEMPEL FRA KONSTANT OG FRA VOKSENDE POPULATION. KONKLUDER (FORHÅBENTL
 Få kørt eksempler med den simulerede DNA (simulationen virker ikke).
 Find ud af hvordan man laver kørsel hvor error vises fremfor blot at fejlmelde (under SFS).
 Brug dsfont package til at skrive $\mathds{E}$ (kan ikke få det til at virke).
+Læs igennem for stave-/slåfejl
 
 
 # References
