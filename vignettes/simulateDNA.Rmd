@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-#library(simDNA)
+library(simDNA)
 ```
 
 This vignette will explain more about using the package simDNA for simulating DNA from various populations. For more information about analyzing DNA using this package, please consult the analyzeDNA vignette.
@@ -23,8 +23,13 @@ This vignette will explain more about using the package simDNA for simulating DN
 # The standard coalescent model
 We will start by explaining the theory behind the simulating function simDNAseq in the simDNA package. When looking at the standard coalescent model we are interested in analyzing how a given population evolved over time (measured in generations). This is typically done by taking a sample of size $n$ from the entire population and finding their most recent common ancestor.
 
-When going backwards in time, we start out by having $n$ individuals (lineages) and end up with one common ancestor after the occurrence of $n-1$ coalescent events (i.e. two individuals 'merge' into one $n-1$ times). During this span of time we thus see that the total number of individuals decreases by one after each coalescent event. In other words there are $n, n-1, \dots, 2$ individuals present respectively during this time. We denote by $T_i$ for $i=2,\dots ,n$ the time (aka. the level) during which there were $i$ lineages present (called branch lengths) as illustrated in the figure from Wakeley below (rephrase).
-![Title](Tree.png)
+When going backwards in time, we start out by having $n$ individuals (lineages) and end up with one common ancestor after the occurrence of $n-1$ coalescent events (i.e. two individuals 'merge' into one $n-1$ times). During this span of time we thus see that the total number of individuals decreases by one after each coalescent event. In other words there are $n, n-1, \dots, 2$ individuals present respectively during this time. We denote by $T_i$, for $i=2,\dots ,n$, the time during which there were $i$ individuals present. Using genealogical tree terminology these are also called branch lengths and are illustrated in the figure from Wakeley below.
+
+<p align="center">
+<img width=50% src=Tree.png>
+</p>
+
+Here we see that the time, when there were exactly 5 individuals present, corresponds to $T_5$. We denote this specific region of the tree the 5'th level.
 
 Mutations are the primary factor contributing to coalescent events, and once we have observed an ancestral tree these are sprinkled on according to a Poisson distribution. That is, given we are in level $k$ of the tree, the number of mutations is determined by $Pois(T_k k \theta/2)$ where $\theta$ is the mutation rate. 
 
@@ -36,9 +41,8 @@ Since the branch lengths are generated differently according to the type of the 
 Assuming that the underlying population has a constant size $N$ during the span of time, we know that 
 $$ T_k \sim exp\Big(\binom{k}{2}\Big), \quad \text{for } k=2,\dots,n. $$
 When specifying the population type to be 'fixedPop' in the function simDNAseq the simulated branch lengths come from the above distribution, and we use these lengths to compute the segregating sites matrix. An example hereof could be 
-```{r eval=FALSE, include=FALSE}
-#CHANGE THE SETTINGS FOR THIS CHUNK
-simDNAseq(n = 10, seqLen = 15, mutRate = 2, popType = "fixedPop")
+```{r}
+simDNAseq(n = 10, seqLen = 22, mutRate = 2, popType = "fixedPop")
 ```
 
 ## Variable population size
@@ -60,8 +64,7 @@ $$ f(x)=exp(- \lambda x), $$
 where $\lambda$ denotes the rate of which the population size increases.
 
 When specifying the population type to be 'varPop' in the function simDNAseq the simulated branch lengths come from the algorithm using the above relative size function. We use these lengths to compute the segregating sites matrix. An example hereof could be
-```{r eval=FALSE, include=FALSE}
-#CHANGE THE SETTINGS FOR THIS CHUNK
+```{r}
 simDNAseq(n = 8, seqLen = 20, mutRate = 5, popType = "varPop", expRate = 1.5)
 ```
 
@@ -74,8 +77,7 @@ $$ f(x)= \left\{
 \end{array} \right. $$
 
 When specifying the population type to be 'sudExpPop' in the function simDNAseq, the simulated branch lengths come from the algorithm using the above relative size function. We use these lengths to compute the segregating sites matrix. An example hereof could be
-```{r eval=FALSE, include=FALSE}
-#CHANGE THE SETTINGS FOR THIS CHUNK
+```{r}
 simDNAseq(n = 25, seqLen = 30, mutRate = 8, popType = "sudExpPop", expansionTime = 2, proportion = 0.9)
 ```
 
