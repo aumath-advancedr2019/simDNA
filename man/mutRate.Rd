@@ -4,23 +4,39 @@
 \alias{mutRate}
 \title{Mutation Rate}
 \usage{
-mutRate(c(2,1,0,0,0))
+mutRate(SFS)
 }
 \arguments{
 \item{SFS}{Vector with the site frequency spectrum.}
 }
 \value{
-The function returns a list with Watterson's estimator and the pairwise difference estimator
+List containing the following components:
+\item{Watterson}{Watterson's estimator.}
+\item{pairwDiff}{The pairwise difference estimator.}
 }
 \description{
-The function calculates two different estimates of the mutation rate: Watterson's estimator and the pairwise difference estimator.
+The function calculates two different estimates of the mutation rate:
+Watterson's estimator and the pairwise difference estimator.
+}
+\details{
+The site frequency spectrum is a vector of length \eqn{n-1}, where
+\eqn{n} is the sample size. The \eqn{i}'th entry is the number of mutations
+that occurred where exactly \eqn{i} sequences had coalesced, and
+thus all entries must be natural numbers (0 included).
+If one runs \code{mutRate}
+with a vector that contains anything other than natural numbers,
+an error will occur.
+
+For details about Watterson's estimator and the pairwise difference
+estimator, see the analyzeDNA vignette by running the following code:
+
+\code{vignette("analyzeDNA", package = "simDNA")}
 }
 \examples{
 mutRate(c(2,1,0,0,0,1,0))
-## $Watterson
-## [1] 1.5427
-##
-## $pairwDiff
-## [1] 1.357143
 
+}
+\references{
+Wakeley J. (2009) \emph{Coalescent Theory: An Introduction}. Colorado:
+Roberts and Company Publishers.
 }

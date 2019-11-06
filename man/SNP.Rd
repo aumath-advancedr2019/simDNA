@@ -2,30 +2,32 @@
 % Please edit documentation in R/SNP.R
 \name{SNP}
 \alias{SNP}
-\title{SNP (Single-Nucleotide Polymorphism)}
+\title{SNP (Single-Nucleotide Polymorphism) matrix}
 \usage{
-SNP(matrix(c(0,0,0,1,0,0,0,0,1),nrow=3))
+SNP(segSites)
 }
 \arguments{
-\item{DNAseq}{A matrix with DNA sequences. Each row is a DNA sequence represented by 0's and 1's, where 1 indicates that a mutation has happened,0 that no mutations has happened.}
+\item{segSites}{Segregating sites matrix. See details.}
 }
 \value{
-The output of the function is a list.
-The first element in the list is a vector containing the positions on which one or more mutations has occured.
-The second element is the SNP matrix itself.
+List containing the following components:
+\item{positions}{The positions on which one or more mutations occurred.}
+\item{SNPmat}{The single-nucleotide polymorphism matrix.}
 }
 \description{
 The function calculates the SNP matrix.
 }
+\details{
+In the segregating sites matrix, each row is a DNA sequence represented
+by zeros and ones, where 1 indicates that a mutation has occurred,
+0 that no mutations have occurred. If the \code{segSites} matrix contains
+anything other than zeros and ones, it will cause an error.
+
+The SNP matrix extracts the columns from the segregating sites matrix
+where one or more mutations have happened, and thus it is a more compact
+representation than the segregating sites matrix.
+}
 \examples{
 SNP(matrix(c(0,0,0,1,0,0,0,0,1),nrow=3))
-## $positions
-## [1] 2 3
-##
-## $SNPmat
-##      [,1] [,2]
-## [1,]    1    0
-## [2,]    0    0
-## [3,]    0    1
 
 }

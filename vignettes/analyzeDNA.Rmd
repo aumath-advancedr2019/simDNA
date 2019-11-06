@@ -24,50 +24,40 @@ This vignette will explain more about using the package simDNA for analyzing DNA
 
 # Functions of the package
 
-We will here give a tutorial of how to use the different functions in the package as well as describe some of the theory behind. But first we will simulate some data to test our functions on.
-
-```{r}
-#fixPop <- simDNAseq(n = 10, seqLen = 15, mutRate = 2, popType = "fixedPop")
-#VarPop <- simDNAseq(n = 10, seqLen = 15, mutRate = 2, popType = "varPop",
-#        expRate = 1.5)
-
-Mat <- matrix(c(0,1,1,0,1,0,0,
-                0,0,1,0,0,0,1,
-                0,0,0,0,1,0,0,
-                0,0,1,0,0,0,1),4,7,byrow=T)
-
-#print(fixPop)
-#print(varPop)
-```
+We will here give examples on how to use the different functions in the package as well as describe some of the theory behind.
 
 ## Single-Nucleotide Polymorphism matrix
 
-The Single-Nucleotide Polymorphism (SNP) matrix is used to present DNA sequences in a compact manner, by only displaying positions on which one or more sequences has a mutation. It can be used to summarize DNA sequences where the sequence length is constant, which excludes i.e. seguences where insertions and deletions take place. 
+The Single-Nucleotide Polymorphism (SNP) matrix is used to present DNA sequences in a compact manner, by only displaying positions on which one or more sequences has a mutation. It can be used to summarize DNA sequences where the sequence length is constant, which excludes i.e. sequences where insertions and deletions take place. 
 
 ### Example:
+The SNP matrix can be calculated using the function SNP
 ```{r}
-SNP(Mat)
+# Example of segregating sites matrix:
+segSitesMat <- matrix(c(0,1,1,0,1,0,0,
+                0,0,1,0,0,0,1,
+                0,0,0,0,1,0,0,
+                0,0,1,0,0,0,1),4,7,byrow=T)
+# Calculate the SNP matrix from the segregating sites matrix:
+SNP(segSitesMat)
 ```
-FORKLAR OUTPUT GENNEM EKSEMPEL
+
 
 
 ## Site frequency spectrum
-The site frequency spectrum is often used for analyzing DNA. It can for instance be used to estimate the mutation rate and to give an indication of the population structure.
+The site frequency spectrum is often used for analyzing DNA. It can for instance be used to estimate the mutation rate and to give an indication of the population structure as we will show later.
 
-The site frequency spectrum (SFS) is a summary statistic used for summarizing information about mutations. It is represented as the vector $\xi = (\xi_1,...,\xi_{n-1})$, where $n$ is the number of samples and $\xi_i$ is the number of mutations that has happened on a branch where exactly $i$ sequences has coalesced. FORKLAR UDEN AT BRUGE BRANCH.
+The site frequency spectrum (SFS) is a summary statistic used for summarizing information about mutations. It is represented as the vector $\xi = (\xi_1,...,\xi_{n-1})$, where $n$ is the number of samples and $\xi_i$ is the number of mutations that occurred where exactly $i$ sequences had coalesced.
 
-### Examples:
+### Example:
+The site frequency spectrum can be calculated using the function SFS.
 ```{r}
-SFS(Mat)
-
-# I TVIVL OM HVORDAN JEG KØRER DET SÅ DEN VISER ADVARSLEN I STEDET FOR AT STOPPE KØRSEL
-#SFS(matrix(c(1,1,0,1),2,2))
+SFS(segSitesMat)
 ```
-FORKLAR EVT EKSEMPLET
 
 
 ## Mutation rate
-There are many ways to estimate the mutation rate. We will here consider some estimators that are unbiased under the standard neutral coalescent model where we assume no natural selection, no recombination, constant population size and no subdivision (the population has not separated into two or more groups). These estimators can be used for all coalescent types, but are only guaranteed to be unbiased under these assumptions. The estimators we consider are all based on the site frequency spectrum $\xi$ and the fact that
+There are many ways to estimate the mutation rate. We will here consider some estimators that are unbiased under the standard neutral coalescent model where we assume no natural selection, no recombination, constant population size and no subdivision (the population has not separated into two or more groups). These estimators can be used for more than just the standard neutral coalescent model, but are only guaranteed to be unbiased under that model. The estimators we consider are all based on the site frequency spectrum $\xi$ and the fact that
 $$
 E[\xi_i] = \frac{\theta}{i},
 $$
@@ -75,7 +65,7 @@ where $\theta$ is the mutation rate.
 Thus $i\xi_i,\ i=1,...,n-1$ are all unbiased estimators of $\theta$. 
  
 ### Watterson's estimator
-A commonly used stimator for the mutation rate is Watterson's estimator which is given as
+A commonly used stimator for the mutation rate is Watterson's estimator which is defined as
 $$
 \hat{\theta}_w = \frac{\sum_{i=1}^{n-1} \xi_i}{\sum_{i=1}^{n-1} \frac1i}.
 $$
@@ -89,13 +79,11 @@ $$
 While this estimator is unbiased, it is not consistent as the variance converges to $\frac\theta3 + \frac29 \theta^2$ as the sample size approaches infinity. Consistency in an estimator is often a property that one wishes for in an estimator, but despite this, the pairwise difference estimator is often used as an estimator for the mutation rate.
 
 ### Examples:
-Watterson's estimator and the pairwise difference estimator can be found using the function mutRate, which takes the site frequency spectrum as input.
+Watterson's estimator and the pairwise difference estimator can be calculated using the function mutRate.
 
 ```{r}
-#mutRate(c(2,1,0,0,1,0,0))
-mutRate(SFS(Mat))
+mutRate(c(2,1,0,0,1,0,0))
 ```
-
 
 
 ## Tajima's D
@@ -103,7 +91,7 @@ Tajima's D is defined as
 $$
 D = \frac{\hat{\theta}_\pi - \hat{\theta}_w}{\sqrt{\widehat{\text{Var}}(\hat{\theta}_\pi - \hat{\theta}_w)}}
 $$
-and is used to test neutrality. That is, to test if the assumptions under the standard neutral coalescent model is reanonable. 
+and is used to test neutrality. That is, to test if the assumptions under the standard neutral coalescent model are reasonable. 
 
 If $D \approx 0$, it would indicate that the standard neutral model is reasonable.
 
@@ -113,17 +101,11 @@ If $D>>0$, it could indicate population subdivision.
 
 One often say that $D$ deviates significantly from 0 if $D$ is lesser than -2 or greater than +2.
 
-Tajima's D can be calculated with the function TajimaD.
-
 ## Examples:
-INDSÆT EKSEMPEL FRA KONSTANT OG FRA VOKSENDE POPULATION. KONKLUDER (FORHÅBENTLIG) AT VI KAN SPORE POPULATIONSSTR VHA TAJIMA'S D.
-
-
-# MANGLER STADIG
-Få kørt eksempler med den simulerede DNA (simulationen virker ikke).
-Find ud af hvordan man laver kørsel hvor error vises fremfor blot at fejlmelde (under SFS).
-Brug dsfont package til at skrive $\mathds{E}$ (kan ikke få det til at virke).
-Læs igennem for stave-/slåfejl
+Tajima's D can be calculated with the function TajimaD.
+```{r}
+TajimaD(c(3,0,2,1,0,0,0))
+```
 
 
 # References

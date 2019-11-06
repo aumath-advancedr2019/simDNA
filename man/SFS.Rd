@@ -4,22 +4,33 @@
 \alias{SFS}
 \title{Site Frequency Spectrum}
 \usage{
-SFS(matrix(c(0,1,0,1,0,0,0,0,0),nrow=3))
+SFS(DNAmat)
 }
 \arguments{
-\item{X}{Matrix; either a SNP or a segregating sites matrix, see details. RYK RESTEN TIL DETAILS where each row is a sequence. The matrix should have a 1 where a mutation has occured and a 0 otherwise. If this is not the case, it will cause an error. Also, an error will be caused if there exists a position on which all sequences have a mutation, as this is an indication that the ancestral state is in fact not the ancestral state.}
+\item{DNAmat}{Matrix; either a single-nucleotide polymorphism matrix or a segregating
+sites matrix. See details.}
 }
 \value{
-The function returns a vector with the site frequency spectrum
+The site frequency spectrum.
 }
 \description{
-The function SFS calcultes the site frequency spectrum.
+The function calculates the site frequency spectrum.
 }
 \details{
-The function calculates the site frequency spectrum and outputs it as a vector. That is, the i'th entry of the output vector is the number of mutations that happened on a branch where exactly i sequences has coalesced.
+The site frequency spectrum is a vector of length \eqn{n-1}, where
+\eqn{n} is the sample size. The \eqn{i}'th entry is the number of mutations
+that occurred where exactly \eqn{i} sequences had coalesced.
+
+The input to the function should be either a single-nucleotide
+polymorphism matrix or a segregating sites matrix. Either way,
+each row in the matrix represents a DNA sequence.
+The matrix should have a 1 where a mutation has occured and a 0 otherwise.
+If this is not the case, it will cause an error.
+If there exists a position on which all sequences have a mutation,
+it will cause a warning, and such a position will be treated
+as if it had no mutations.
 }
 \examples{
 SFS(matrix(c(0,1,0,1,0,0,0,0,0),nrow=3))
-## [1] 2 0
 
 }

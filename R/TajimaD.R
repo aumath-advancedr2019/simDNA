@@ -4,29 +4,50 @@
 #' The function calculates Tajima's D.
 #'
 #' @usage
-#' TajimaD(c(3,0,2,1,0,0,0))
+#' TajimaD(SFS)
 #'
 #' @param SFS
 #' Vector with the site frequency spectrum.
 #'
-#' @return The function returns Tajima's D.
+#' @return Tajima's D.
 #'
 #' @examples
 #' TajimaD(c(3,0,2,1,0,0,0))
 #'
+#' @details
+#' The site frequency spectrum is a vector of length \eqn{n-1}, where
+#' \eqn{n} is the sample size. The \eqn{i}'th entry is the number of mutations
+#' that occurred where exactly \eqn{i} sequences had coalesced, and
+#' thus all entries must be natural numbers (0 included).
+#' If one runs \code{TajimaD}
+#' with a vector that contains anything other than natural numbers,
+#' an error will occur.
+#'
+#' For details about Tajima's D, see the analyzeDNA
+#' vignette by running the following code:
+#'
+#' \code{vignette("analyzeDNA", package = "simDNA")}
+#'
+#'
+#' @references
+#' Wakeley J. (2009) \emph{Coalescent Theory: An Introduction}. Colorado:
+#' Roberts and Company Publishers.
+#'
 #' @export
 
-# Details: skriv formel (med Watterson's theta etc). Skriv ikke Watterson's og
- # pairwise difference, link til deres help.
-
 TajimaD <- function(SFS){
+  # Make error if we have negative entries
   if(min(SFS)<0){
-    stop('Entries in SFS must be non-negative')
+    stop('Entries in SFS must be natural numbers (0 included)')
+  }
+  # Make error if not whole numbers
+  if(!isTRUE(all(SFS == floor(SFS)))){
+    stop('Entries in SFS must be natural numbers (0 included)')
   }
   mutRate <- mutRate(SFS)
-  # Estimate of mutation rate based on pairwise difference:
+  # Estimate of mutation rate based on pairwise difference estimator:
   pairwDiff <- mutRate$pairwDiff
-  # Estimate of mutation rate based on Watterson's estimater
+  # Estimate of mutation rate based on Watterson's estimator:
   Watterson <- mutRate$Watterson
   # The numerator of Tajima's D:
   numerator <- pairwDiff - Watterson

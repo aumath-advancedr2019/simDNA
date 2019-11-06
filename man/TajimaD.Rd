@@ -4,18 +4,36 @@
 \alias{TajimaD}
 \title{Tajima's D}
 \usage{
-TajimaD(c(3,0,2,1,0,0,0))
+TajimaD(SFS)
 }
 \arguments{
 \item{SFS}{Vector with the site frequency spectrum.}
 }
 \value{
-The function returns Tajima's D.
+Tajima's D.
 }
 \description{
 The function calculates Tajima's D.
 }
+\details{
+The site frequency spectrum is a vector of length \eqn{n-1}, where
+\eqn{n} is the sample size. The \eqn{i}'th entry is the number of mutations
+that occurred where exactly \eqn{i} sequences had coalesced, and
+thus all entries must be natural numbers (0 included).
+If one runs \code{TajimaD}
+with a vector that contains anything other than natural numbers,
+an error will occur.
+
+For details about Tajima's D, see the analyzeDNA
+vignette by running the following code:
+
+\code{vignette("analyzeDNA", package = "simDNA")}
+}
 \examples{
 TajimaD(c(3,0,2,1,0,0,0))
 
+}
+\references{
+Wakeley J. (2009) \emph{Coalescent Theory: An Introduction}. Colorado:
+Roberts and Company Publishers.
 }

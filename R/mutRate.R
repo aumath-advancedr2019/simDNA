@@ -1,42 +1,51 @@
 #' Mutation Rate
 #'
 #' @description
-#' The function calculates two different estimates of the mutation rate: Watterson's estimator and the pairwise difference estimator.
+#' The function calculates two different estimates of the mutation rate:
+#' Watterson's estimator and the pairwise difference estimator.
 #'
 #' @usage
-#' mutRate(c(2,1,0,0,0))
+#' mutRate(SFS)
 #'
 #' @param SFS
 #' Vector with the site frequency spectrum.
 #'
 #' @return
-#' The function returns a list with Watterson's estimator and the pairwise difference estimator
+#' List containing the following components:
+#' \item{Watterson}{Watterson's estimator.}
+#' \item{pairwDiff}{The pairwise difference estimator.}
 #'
 #' @examples
 #' mutRate(c(2,1,0,0,0,1,0))
-#' ## $Watterson
-#' ## [1] 1.5427
-#' ##
-#' ## $pairwDiff
-#' ## [1] 1.357143
+#'
+#' @details
+#' The site frequency spectrum is a vector of length \eqn{n-1}, where
+#' \eqn{n} is the sample size. The \eqn{i}'th entry is the number of mutations
+#' that occurred where exactly \eqn{i} sequences had coalesced, and
+#' thus all entries must be natural numbers (0 included).
+#' If one runs \code{mutRate}
+#' with a vector that contains anything other than natural numbers,
+#' an error will occur.
+#'
+#' For details about Watterson's estimator and the pairwise difference
+#' estimator, see the analyzeDNA vignette by running the following code:
+#'
+#' \code{vignette("analyzeDNA", package = "simDNA")}
+#'
+#' @references
+#' Wakeley J. (2009) \emph{Coalescent Theory: An Introduction}. Colorado:
+#' Roberts and Company Publishers.
 #'
 #' @export
 
-# Prøv og link til help for paiirwDiff
-
-# RET HVER GANG DER ER LISTE: SE princomp
-
-# Fjern output fra eksempler.
-
-# Details: forklar kort hvad site frequency spectrum er. Hver gang.
-
-# Details: hav enten formel der er brugt eller reference.
-
-# Generelt: cleanup. Ret tastefejl.
-
 mutRate <- function(SFS){
+  # Make error if we have negative entries
   if(min(SFS)<0){
-    stop('Entries in SFS must be non-negative')
+    stop('Entries in SFS must be natural numbers (0 included)')
+  }
+  # Make error if not whole numbers
+  if(!isTRUE(all(SFS == floor(SFS)))){
+    stop('Entries in SFS must be natural numbers (0 included)')
   }
   res <- list()
   # Watterson's estimator (the numerator is the number of segregating sites):
