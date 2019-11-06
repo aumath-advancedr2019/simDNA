@@ -8,15 +8,16 @@
 #' simDNAseq(n, seqLen, mutRate, popType, ...)
 #'
 #' ## S3 method for class 'fixedPop'
-#' simDNAseq(n, seqLen, mutRate, popType="fixedPop", expRate=NULL, expansionTime=NULL,
-#'         proportion=NULL)
+#' simDNAseq(n, seqLen, mutRate, popType="fixedPop", expRate=NULL,
+#'         expansionTime=NULL, proportion=NULL)
 #'
 #' ## S3 method for class 'varPop'
 #' simDNAseq(n, seqLen, mutRate, popType="varPop", expRate, expansionTime=NULL,
 #'         proportion=NULL)
 #'
 #' ## S3 method for class 'sudExpPop'
-#' simDNAseq(n, seqLen, mutRate, popType="sudExpPop", expRate=NULL, expansionTime, proportion)
+#' simDNAseq(n, seqLen, mutRate, popType="sudExpPop", expRate=NULL,
+#'         expansionTime, proportion)
 #'
 #' @param n the sample size.
 #' @param seqLen the length of the DNA sequences.
@@ -45,11 +46,13 @@
 #' the expansion. The decline in population size happened at time \eqn{bN}
 #' (in generations) in the past.
 #'
+#' The output is a segregating sites matrix; that is a matrix consisting of zeroes
+#' and ones. Here the number 1 indicates that a mutation occured at this specific
+#' site, and the number 0 indicates that no mutation occured.
+#'
 #' @return
-#' \code{simDNAseq} returns a simulated segregating sites matrix.
-#' That is a \code{n} times \code{seqLen} matrix consisting of zeroes and ones. Here the
-#' number 1 indicates that a mutation occured at this specific site, and the number 0
-#' indicates that no mutation occured.
+#' \code{simDNAseq} returns a simulated a \code{n} times \code{seqLen} segregating
+#' sites matrix. See details.
 #'
 #' @examples
 #' ## An example with fixed population size
@@ -60,8 +63,8 @@
 #'         expRate = 1.5)
 #'
 #' ## An example with suddenly expanded population size
-#' simDNAseq(n = 25, seqLen = 30, mutRate = 8, popType = "sudExpPop", expansionTime = 2,
-#'         proportion = 0.9)
+#' simDNAseq(n = 25, seqLen = 30, mutRate = 8, popType = "sudExpPop",
+#'         expansionTime = 2, proportion = 0.9)
 #'
 #' @references
 #' Tavaré, S. (2004) \emph{Ancestral Inference in Population Genetics}.
@@ -75,51 +78,7 @@
 simDNAseq <- function(n, seqLen, mutRate, popType, expRate, expansionTime, proportion){
   branchLen <- simBranch(n, seqLen, mutRate, expRate, expansionTime, proportion, popType)
   res <- simSeq(branchLen, seqLen, mutRate)
-  class(res) <- c(class(branchLen), class(res))
+  class(res) <- c(class(branchLen), "population", class(res))
   return(res)
-  #UseMethod("simDNAseq", branchLen)
-}
-
-# simDNAseq.fixedPop <- function(n, seqLen, mutRate, popType="fixedPop", expRate=NULL,
-#                                expansionTime=NULL, proportion=NULL){
-#   branchLen <- simBranchFixed(n)
-#   res <- simSeq(branchLen, seqLen, mutRate)
-#   class(res) <- c(class(branchLen), class(res))
-#   return(res)
-# }
-#
-# simDNAseq.varPop <- function(n, seqLen, mutRate, popType="varPop", expRate,
-#                                expansionTime=NULL, proportion=NULL){
-#   branchLen <- simBranchVar(n, expRate)
-#   res <- simSeq(branchLen, seqLen, mutRate)
-#   class(res) <- c(class(branchLen), class(res))
-#   return(res)
-# }
-#
-#
-# simDNAseq.sudExpPop <- function(n, seqLen, mutRate, popType="sudExpPop", expRate=NULL,
-#                                expansionTime, proportion){
-#   branchLen <- simBranchSudExpansion(n, expansionTime, proportion)
-#   res <- simSeq(branchLen, seqLen, mutRate)
-#   class(res) <- c(class(branchLen), class(res))
-#   return(res)
-# }
-
-print.fixedPop <- function(x, ...){
-  res <- x[1:nrow(x),1:ncol(x)]
-  class(res) <- class(x)
-  print.table(res)
-}
-
-print.varPop <- function(x, ...){
-  res <- x[1:nrow(x),1:ncol(x)]
-  class(res) <- class(x)
-  print.table(res)
-}
-
-print.sudExpPop <- function(x, ...){
-  res <- x[1:nrow(x),1:ncol(x)]
-  class(res) <- class(x)
-  print.table(res)
 }
 
