@@ -20,7 +20,7 @@ library(simDNA)
 
 This vignette will explain more about using the package simDNA for simulating DNA from various populations. For more information about analyzing DNA using this package, please consult the analyzeDNA vignette.
 
-# The standard coalescent model
+## The standard coalescent model
 We will start by explaining the theory behind the simulating function simDNAseq in the simDNA package. When looking at the standard coalescent model we are interested in analyzing how a given population evolved over time (measured in generations). This is typically done by taking a sample of size $n$ from the entire population and finding their most recent common ancestor.
 
 When going backwards in time, we start out by having $n$ individuals (lineages) and end up with one common ancestor after the occurrence of $n-1$ coalescent events (i.e. two individuals 'merge' into one $n-1$ times). During this span of time we thus see that the total number of individuals decreases by one after each coalescent event. In other words there are $n, n-1, \dots, 2$ individuals present respectively during this time. We denote by $T_i$, for $i=2,\dots ,n$, the time during which there were $i$ individuals present. Using genealogical tree terminology these are also called branch lengths and are illustrated in the figure from Wakeley below.
@@ -37,7 +37,7 @@ When we have observed mutations as described above, we are interested in the seg
 
 Since the branch lengths are generated differently according to the type of the population size, these are explained seperately.
 
-## Fixed population size
+### Fixed population size
 Assuming that the underlying population has a constant size $N$ during the span of time, we know that 
 $$ T_k \sim exp\Big(\binom{k}{2}\Big), \quad \text{for } k=2,\dots,n. $$
 When specifying the population type to be 'fixedPop' in the function simDNAseq the simulated branch lengths come from the above distribution, and we use these lengths to compute the segregating sites matrix. An example hereof could be 
@@ -45,7 +45,7 @@ When specifying the population type to be 'fixedPop' in the function simDNAseq t
 simDNAseq(n = 10, seqLen = 22, mutRate = 2, popType = "fixedPop")
 ```
 
-## Variable population size
+### Variable population size
 Assuming that the underlying population has a variable size during the span of time, we denote by $N(j)$ the number of sequences in the population $j$ generations before the present. For $j=0$ we let $N := N(0)$ denote the number of individuals in the present. Furthermore we let $$ f(x)=\frac{N(j)}{N}, \quad \text{for } \frac{j-1}{N} < x \le \frac{j}{N}, \,\, j=1,2,\dots $$
 denote the relative size function and 
 $$ \Lambda(t) = \int_0^t \frac{1}{f(x)}\, dx $$
@@ -58,7 +58,7 @@ denote the integrated intensity function. This function is essential in the algo
 
 Note that since $\Lambda(t)$ depends on the relative size function, the above algorithm looks different for different types of population sizes. 
 
-### Exponentially growing population size
+#### Exponentially growing population size
 Assuming that the size of the population grows exponentially (forwards in time) we can use the above algorithm with 
 $$ f(x)=exp(- \lambda x), $$
 where $\lambda$ denotes the rate of which the population size increases.
@@ -68,7 +68,7 @@ When specifying the population type to be 'varPop' in the function simDNAseq the
 simDNAseq(n = 8, seqLen = 20, mutRate = 5, popType = "varPop", expRate = 1.5)
 ```
 
-### Suddenly expanded population size
+#### Suddenly expanded population size
 When the size of the population suddenly expands, we have that backwards in time the population size is $N$ before the expansion and $\alpha N$ afterwards. The decline in population size happened at time $b N$ (measured in generations) in the past. In this case the relative size function used in the algorithm is
 $$ f(x)= \left\{
 \begin{array}{ll}
@@ -81,7 +81,7 @@ When specifying the population type to be 'sudExpPop' in the function simDNAseq,
 simDNAseq(n = 25, seqLen = 30, mutRate = 8, popType = "sudExpPop", expansionTime = 2, proportion = 0.9)
 ```
 
-# References
+## References
 Wakeley J. (2009) *Coalescent Theory: An Introduction*. Colorado: Roberts and Company Publishers.
 
 Tavaré, S. (2004) *Ancestral Inference in Population Genetics*. Berlin: Springer-Verlag.
