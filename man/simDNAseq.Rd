@@ -7,15 +7,16 @@
 simDNAseq(n, seqLen, mutRate, popType, ...)
 
 ## S3 method for class 'fixedPop'
-simDNAseq(n, seqLen, mutRate, popType="fixedPop", expRate=NULL, expansionTime=NULL,
-        proportion=NULL)
+simDNAseq(n, seqLen, mutRate, popType="fixedPop", expRate=NULL,
+        expansionTime=NULL, proportion=NULL)
 
 ## S3 method for class 'varPop'
 simDNAseq(n, seqLen, mutRate, popType="varPop", expRate, expansionTime=NULL,
         proportion=NULL)
 
 ## S3 method for class 'sudExpPop'
-simDNAseq(n, seqLen, mutRate, popType="sudExpPop", expRate=NULL, expansionTime, proportion)
+simDNAseq(n, seqLen, mutRate, popType="sudExpPop", expRate=NULL,
+        expansionTime, proportion)
 }
 \arguments{
 \item{n}{the sample size.}
@@ -37,10 +38,8 @@ when \code{popType} is '\code{varPop}'.}
 the expansion.}
 }
 \value{
-\code{simDNAseq} returns a simulated segregating sites matrix.
-That is a \code{n} times \code{seqLen} matrix consisting of zeroes and ones. Here the
-number 1 indicates that a mutation occured at this specific site, and the number 0
-indicates that no mutation occured.
+\code{simDNAseq} returns a simulated a \code{n} times \code{seqLen} segregating
+sites matrix. See details.
 }
 \description{
 \code{simDNAseq} simulates a segregating sites matrix consisting of \code{n}
@@ -60,6 +59,10 @@ ancestral tree from a suddenly expanded population. This means that backwards in
 time the population size is \eqn{N} before the expansion and \eqn{\alphaN} after
 the expansion. The decline in population size happened at time \eqn{bN}
 (in generations) in the past.
+
+The output is a segregating sites matrix; that is a matrix consisting of zeroes
+and ones. Here the number 1 indicates that a mutation occured at this specific
+site, and the number 0 indicates that no mutation occured.
 }
 \examples{
 ## An example with fixed population size
@@ -70,8 +73,8 @@ simDNAseq(n = 8, seqLen = 20, mutRate = 5, popType = "varPop",
         expRate = 1.5)
 
 ## An example with suddenly expanded population size
-simDNAseq(n = 25, seqLen = 30, mutRate = 8, popType = "sudExpPop", expansionTime = 2,
-        proportion = 0.9)
+simDNAseq(n = 25, seqLen = 30, mutRate = 8, popType = "sudExpPop",
+        expansionTime = 2, proportion = 0.9)
 
 }
 \references{
