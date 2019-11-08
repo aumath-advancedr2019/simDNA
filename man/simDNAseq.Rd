@@ -38,12 +38,12 @@ when \code{popType} is '\code{varPop}'.}
 the expansion.}
 }
 \value{
-\code{simDNAseq} returns a simulated a \code{n} times \code{seqLen} segregating
+\code{simDNAseq} returns a simulated \code{n} times \code{seqLen} segregating
 sites matrix. See details.
 }
 \description{
 \code{simDNAseq} simulates a segregating sites matrix consisting of \code{n}
-sequences based on the type of population size.
+sequences based on how the population size develops.
 }
 \details{
 If \code{popType} is '\code{fixedPop}' we simulate the branches of the ancestral

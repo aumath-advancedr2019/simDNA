@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 library(simDNA)
 ```
 
-This vignette will explain more about using the package simDNA for simulating DNA from various populations. For more information about analyzing DNA using this package, please consult the analyzeDNA vignette.
+This vignette will explain more about using the package simDNA for simulating DNA from various types of population sizes. For more information about analyzing DNA using this package, please consult the analyzeDNA vignette.
 
 ## The standard coalescent model
 We will start by explaining the theory behind the simulating function simDNAseq in the simDNA package. When looking at the standard coalescent model we are interested in analyzing how a given population evolved over time (measured in generations). This is typically done by taking a sample of size $n$ from the entire population and finding their most recent common ancestor.
@@ -63,13 +63,13 @@ Assuming that the size of the population grows exponentially (forwards in time) 
 $$ f(x)=exp(- \lambda x), $$
 where $\lambda$ denotes the rate of which the population size increases.
 
-When specifying the population type to be 'varPop' in the function simDNAseq the simulated branch lengths come from the algorithm using the above relative size function. We use these lengths to compute the segregating sites matrix. An example hereof could be
+When specifying the population type to be 'varPop' in the function simDNAseq the simulated branch lengths come from the algorithm using the above relative size function. We use these branch lengths to compute the segregating sites matrix. An example hereof could be
 ```{r}
 simDNAseq(n = 8, seqLen = 20, mutRate = 5, popType = "varPop", expRate = 1.5)
 ```
 
 #### Suddenly expanded population size
-When the size of the population suddenly expands, we have that backwards in time the population size is $N$ before the expansion and $\alpha N$ afterwards. The decline in population size happened at time $b N$ (measured in generations) in the past. In this case the relative size function used in the algorithm is
+When the size of the population suddenly expands, we have that backwards in time the population size is $N$ before the expansion and $\alpha N$ afterwards for $0<\alpha \le 1$. The decline in population size happened at time $b N$ (measured in generations) in the past. In this case the relative size function used in the algorithm is
 $$ f(x)= \left\{
 \begin{array}{ll}
 1 & 0\le x < b, \\
