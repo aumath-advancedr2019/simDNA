@@ -22,41 +22,39 @@ library(simDNA)
 
 This vignette will explain more about using the package simDNA for analyzing DNA. For more information about simulating DNA using this package, please consult the simulateDNA vignette.
 
-# Functions of the package
+## Functions of the package
 
 We will here give examples on how to use the different functions in the package as well as describe some of the theory behind.
 
-## Single-Nucleotide Polymorphism matrix
+### Single-Nucleotide Polymorphism matrix
 
 The Single-Nucleotide Polymorphism (SNP) matrix is used to present DNA sequences in a compact manner, by only displaying positions on which one or more sequences has a mutation. It can be used to summarize DNA sequences where the sequence length is constant, which excludes i.e. sequences where insertions and deletions take place. 
 
-### Example:
+#### Example:
 The SNP matrix can be calculated using the function SNP
 ```{r}
-# Example of segregating sites matrix:
 segSitesMat <- matrix(c(0,1,1,0,1,0,0,
-                0,0,1,0,0,0,1,
-                0,0,0,0,1,0,0,
-                0,0,1,0,0,0,1),4,7,byrow=T)
-# Calculate the SNP matrix from the segregating sites matrix:
+                        0,0,1,0,0,0,1,
+                        0,0,0,0,1,0,0,
+                        0,0,1,0,0,0,1),4,7,byrow=T)
 SNP(segSitesMat)
 ```
 
 
 
-## Site frequency spectrum
+### Site frequency spectrum
 The site frequency spectrum is often used for analyzing DNA. It can for instance be used to estimate the mutation rate and to give an indication of the population structure as we will show later.
 
-The site frequency spectrum (SFS) is a summary statistic used for summarizing information about mutations. It is represented as the vector $\xi = (\xi_1,...,\xi_{n-1})$, where $n$ is the number of samples and $\xi_i$ is the number of mutations that occurred where exactly $i$ sequences had coalesced.
+The site frequency spectrum (SFS) is a summary statistic used for summarizing information about mutations. It is represented as the vector $\xi = (\xi_1,...,\xi_{n-1})$, where $n$ is the number of samples and $\xi_i$ is the number of segregating sites where a mutation occur in $i$ sequences.
 
-### Example:
+#### Example:
 The site frequency spectrum can be calculated using the function SFS.
 ```{r}
 SFS(segSitesMat)
 ```
 
 
-## Mutation rate
+### Mutation rate
 There are many ways to estimate the mutation rate. We will here consider some estimators that are unbiased under the standard neutral coalescent model where we assume no natural selection, no recombination, constant population size and no subdivision (the population has not separated into two or more groups). These estimators can be used for more than just the standard neutral coalescent model, but are only guaranteed to be unbiased under that model. The estimators we consider are all based on the site frequency spectrum $\xi$ and the fact that
 $$
 E[\xi_i] = \frac{\theta}{i},
@@ -64,21 +62,21 @@ $$
 where $\theta$ is the mutation rate.
 Thus $i\xi_i,\ i=1,...,n-1$ are all unbiased estimators of $\theta$. 
  
-### Watterson's estimator
-A commonly used stimator for the mutation rate is Watterson's estimator which is defined as
+#### Watterson's estimator
+A commonly used estimator for the mutation rate is Watterson's estimator which is defined as
 $$
 \hat{\theta}_w = \frac{\sum_{i=1}^{n-1} \xi_i}{\sum_{i=1}^{n-1} \frac1i}.
 $$
 This is an unbiased estimator and consistent. That is, it has mean $\theta$, and as the sample size approaches infinity, the variance approaches 0.
 
-### Pairwise difference estimator
+#### Pairwise difference estimator
 Another unbiased estimator is the pairwise difference. The pairwise difference is defined as
 $$
 \hat{\theta}_{\pi} = \frac{1}{{n \choose 2}} \sum_{i=1}^{n-1}i(n-i)\xi_i.
 $$
 While this estimator is unbiased, it is not consistent as the variance converges to $\frac\theta3 + \frac29 \theta^2$ as the sample size approaches infinity. Consistency in an estimator is often a property that one wishes for in an estimator, but despite this, the pairwise difference estimator is often used as an estimator for the mutation rate.
 
-### Examples:
+#### Example:
 Watterson's estimator and the pairwise difference estimator can be calculated using the function mutRate.
 
 ```{r}
@@ -86,7 +84,7 @@ mutRate(c(2,1,0,0,1,0,0))
 ```
 
 
-## Tajima's D
+### Tajima's D
 Tajima's D is defined as
 $$
 D = \frac{\hat{\theta}_\pi - \hat{\theta}_w}{\sqrt{\widehat{\text{Var}}(\hat{\theta}_\pi - \hat{\theta}_w)}}
@@ -99,14 +97,14 @@ If $D<<0$, it could be an indication of a growing population size, either a sudd
 
 If $D>>0$, it could indicate population subdivision.
 
-One often say that $D$ deviates significantly from 0 if $D$ is lesser than -2 or greater than +2.
+One often say that $D$ deviates significantly from 0 if $D$ is less than -2 or greater than +2.
 
-## Examples:
+### Example:
 Tajima's D can be calculated with the function TajimaD.
 ```{r}
 TajimaD(c(3,0,2,1,0,0,0))
 ```
 
 
-# References
+## References
 Wakeley J. (2009) *Coalescent Theory: An Introduction*. Colorado: Roberts and Company Publishers.
