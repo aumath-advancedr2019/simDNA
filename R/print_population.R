@@ -14,6 +14,8 @@
 #' Here the number 1 indicates that a mutation occured at this specific site, and
 #' the number 0 indicates that no mutation occured.
 #'
+#' It is used for printing the simulated segregating sites matrix from \code{simDNAseq}.
+#'
 #' @examples
 #' SegMat <- matrix(c(1, 1, 1, 1, 0,
 #'                    0, 1, 1, 1, 0,

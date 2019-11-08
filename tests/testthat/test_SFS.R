@@ -21,3 +21,7 @@ test_that("output does what it should",{
   expect_equal(length(SFS(matrix(0,nrow=100,ncol=200))),99)
 
 })
+
+
+
+
