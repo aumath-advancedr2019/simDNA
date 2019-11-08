@@ -48,9 +48,11 @@ SFS <- function(DNAmat){
   # If position on which all sequences has mutation, change it to appear as no mutations
   count[count %in% nrow(DNAmat)]=0
   res <- rep(0,nrow(DNAmat)-1)
-  # Find out how many times we observed 1,2,3,... mutations
-  dat <- as.data.frame(table(count[count>0]))
-  # i'th entry of the SFS is the number of times we observed i mutations
-  res[dat[,1]] <- dat[,2]
+  if(sum(count)!=0){
+    # Find out how many times we observed 1,2,3,... mutations
+    dat <- as.data.frame(table(count[count>0]))
+    # i'th entry of the SFS is the number of times we observed i mutations
+    res[dat[,1]] <- dat[,2]
+  }
   return(res)
 }
