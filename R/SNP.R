@@ -29,12 +29,15 @@
 #' @export
 
 SNP <- function(segSites){
+  # Count how many mutations are present in each position
   count <- colSums(segSites)
+  # The positions on which we have a mutation
   positions <- which(count>0)
   # If there is anything other than 0's and 1's in the matrix, throw an error
   if(sum(length(which(segSites==0))+length(which(segSites==1)))!=ncol(segSites)*nrow(segSites)){
     stop('The segSites matrix is only allowed to contain zeroes and ones')
   }
+  # For the SNP matrix, we only display the rows where mutations happened
   mat <- segSites[,positions]
   res <- list()
   res$positions <- positions

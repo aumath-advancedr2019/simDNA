@@ -35,6 +35,7 @@
 #' @export
 
 SFS <- function(DNAmat){
+  # Count how many mutations are present in each position
   count <- colSums(DNAmat)
   # If there is anything other than 0's and 1's in the matrix, throw an error
   if(sum(length(which(DNAmat==0))+length(which(DNAmat==1)))!=ncol(DNAmat)*nrow(DNAmat)){
@@ -51,7 +52,9 @@ SFS <- function(DNAmat){
     }
   }
   res <- rep(0,nrow(DNAmat)-1)
+  # Find out how many times we observed 1,2,3,... mutations
   dat <- as.data.frame(table(count[count>0]))
+  # i'th entry of the SFS is the number of times we observed i mutations
   res[dat[,1]] <- dat[,2]
   return(res)
 }
