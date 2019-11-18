@@ -78,7 +78,7 @@
 simDNAseq <- function(n, seqLen, mutRate, popType, expRate, expansionTime, proportion){
   branchLen <- simBranch(n, seqLen, mutRate, expRate, expansionTime, proportion, popType)
   res <- simSeq(branchLen, seqLen, mutRate)
-  class(res) <- c(class(branchLen), "population", class(res))
+  class(res) <- c(class(branchLen), "DNAmat_class", class(res))
   return(res)
 }
 

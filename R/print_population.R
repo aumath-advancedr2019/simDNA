@@ -4,8 +4,8 @@
 #' Prints a segregating sites matrix.
 #'
 #' @usage
-#' ## S3 method for class 'population'
-#' print.population(x, ...)
+#' ## S3 method for class 'DNAmat_class'
+#' print.DNAmat_class(x, ...)
 #'
 #' @param x a segregating sites matrix. See details.
 #'
@@ -22,12 +22,12 @@
 #'                    0, 0, 0, 1, 0,
 #'                    0, 0, 0, 0, 1,
 #'                    0, 0, 0, 0, 0), byrow=T, nrow=5)
-#'class(SegMat) <- "population"
+#'class(SegMat) <- "DNAmat_class"
 #'print(SegMat)
 #'
 #' @export
 
-print.population <- function(x, ...){
+print.DNAmat_class <- function(x, ...){
   res <- x[1:nrow(x),1:ncol(x)]
   class(res) <- class(x)
   print.table(res)
