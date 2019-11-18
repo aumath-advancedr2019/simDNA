@@ -1,10 +1,12 @@
 Package: simDNA
 Type: Package
 Title: Simulate and analyze DNA
-Version: 0.1.0
+Version: 0.2.0
 Author: Elias Arildskov <au542132@uni.au.dk>, Camilla P. Kudahl <au544603@uni.au.dk> and Maiken B. Poulsen <au546148@uni.au.dk>.
-Description: Simulate and analyze DNA
-License: What license is it under?
+Description: Contains function to simulate segregating sites matrices for various population 
+types. It also contains functions to analyze DNA based on segregating sites matrices or the 
+site frequency spectrum.
+License: GPL
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
