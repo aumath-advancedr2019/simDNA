@@ -7,7 +7,7 @@
 mutRate(SFS)
 }
 \arguments{
-\item{SFS}{Vector with the site frequency spectrum.}
+\item{SFS}{vector with the site frequency spectrum.}
 }
 \value{
 List containing the following components:
@@ -20,17 +20,15 @@ Watterson's estimator and the pairwise difference estimator.
 }
 \details{
 The site frequency spectrum is a vector of length \eqn{n-1}, where
-\eqn{n} is the sample size. The \eqn{i}'th entry is the number of mutations
-that occurred where exactly \eqn{i} sequences had coalesced, and
+\eqn{n} is the sample size. The \eqn{i}'th entry is the number of
+segregating sites where a mutation occur in \eqn{i} sequences, and
 thus all entries must be natural numbers (0 included).
 If one runs \code{mutRate}
 with a vector that contains anything other than natural numbers,
 an error will occur.
 
 For details about Watterson's estimator and the pairwise difference
-estimator, see the analyzeDNA vignette by running the following code:
-
-\code{vignette("analyzeDNA", package = "simDNA")}
+estimator, consult the analyzeDNA vignette.
 }
 \examples{
 mutRate(c(2,1,0,0,0,1,0))

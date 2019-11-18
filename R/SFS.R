@@ -8,8 +8,8 @@
 #'
 #' @details
 #' The site frequency spectrum is a vector of length \eqn{n-1}, where
-#' \eqn{n} is the sample size. The \eqn{i}'th entry is the number of mutations
-#' that occurred where exactly \eqn{i} sequences had coalesced.
+#' \eqn{n} is the sample size. The \eqn{i}'th entry is the number of
+#' segregating sites where a mutation occur in \eqn{i} sequences.
 #'
 #' The input to the function should be either a single-nucleotide
 #' polymorphism matrix or a segregating sites matrix. Either way,
@@ -22,7 +22,7 @@
 #'
 #'
 #' @param DNAmat
-#' Matrix; either a single-nucleotide polymorphism matrix or a segregating
+#' matrix; either a single-nucleotide polymorphism matrix or a segregating
 #' sites matrix. See details.
 #'
 #'
@@ -35,23 +35,24 @@
 #' @export
 
 SFS <- function(DNAmat){
+  # Count how many mutations are present in each position
   count <- colSums(DNAmat)
   # If there is anything other than 0's and 1's in the matrix, throw an error
   if(sum(length(which(DNAmat==0))+length(which(DNAmat==1)))!=ncol(DNAmat)*nrow(DNAmat)){
-    stop('The DNAmat matrix is only allowed to contain zeroes and ones')
+    stop('The input is only allowed to contain zeroes and ones')
   }
   # If there is a position on which all sequences has a mutation, make warning
   if(any(count==nrow(DNAmat))){
-    warning('There is one or more position on which a mutation occur on all sequences. See ?SFS')
+    warning('There is one or more positions on which a mutation occur on all sequences. See ?SFS')
   }
   # If position on which all sequences has mutation, change it to appear as no mutations
-  for(i in 1:ncol(DNAmat)){
-    if(count[i]==nrow(DNAmat)){
-      count[i]=0
-    }
-  }
+  count[count %in% nrow(DNAmat)]=0
   res <- rep(0,nrow(DNAmat)-1)
-  dat <- as.data.frame(table(count[count>0]))
-  res[dat[,1]] <- dat[,2]
+  if(sum(count)!=0){
+    # Find out how many times we observed 1,2,3,... mutations
+    dat <- as.data.frame(table(count[count>0]))
+    # i'th entry of the SFS is the number of times we observed i mutations
+    res[dat[,1]] <- dat[,2]
+  }
   return(res)
 }

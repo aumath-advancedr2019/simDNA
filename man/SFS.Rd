@@ -7,7 +7,7 @@
 SFS(DNAmat)
 }
 \arguments{
-\item{DNAmat}{Matrix; either a single-nucleotide polymorphism matrix or a segregating
+\item{DNAmat}{matrix; either a single-nucleotide polymorphism matrix or a segregating
 sites matrix. See details.}
 }
 \value{
@@ -18,8 +18,8 @@ The function calculates the site frequency spectrum.
 }
 \details{
 The site frequency spectrum is a vector of length \eqn{n-1}, where
-\eqn{n} is the sample size. The \eqn{i}'th entry is the number of mutations
-that occurred where exactly \eqn{i} sequences had coalesced.
+\eqn{n} is the sample size. The \eqn{i}'th entry is the number of
+segregating sites where a mutation occur in \eqn{i} sequences.
 
 The input to the function should be either a single-nucleotide
 polymorphism matrix or a segregating sites matrix. Either way,

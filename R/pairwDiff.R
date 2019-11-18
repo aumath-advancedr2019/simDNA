@@ -8,7 +8,7 @@
 #' pairwDiff(SFS)
 #'
 #' @param SFS
-#' Vector with the site frequency spectrum.
+#' vector with the site frequency spectrum.
 #'
 #' @return
 #' The pairwise difference.
@@ -18,17 +18,14 @@
 #'
 #' @details
 #' The site frequency spectrum is a vector of length \eqn{n-1}, where
-#' \eqn{n} is the sample size. The \eqn{i}'th entry is the number of mutations
-#' that occurred where exactly \eqn{i} sequences had coalesced, and
+#' \eqn{n} is the sample size. The \eqn{i}'th entry is the number of
+#' segregating sites where a mutation occur in \eqn{i} sequences, and
 #' thus all entries must be natural numbers (0 included).
 #' If one runs \code{pairwDiff}
 #' with a vector that contains anything other than natural numbers,
 #' an error will occur.
 #'
-#' For details about the pairwise difference, see the analyzeDNA
-#' vignette by running the following code:
-#'
-#' \code{vignette("analyzeDNA", package = "simDNA")}
+#' For details about the pairwise difference, consult the analyzeDNA vignette.
 #'
 #' @references
 #' Wakeley J. (2009) \emph{Coalescent Theory: An Introduction}. Colorado:
@@ -51,9 +48,9 @@ pairwDiff <- function(SFS){
   }
   # The sample size:
   sampSize <- length(SFS) +1
-  # Helping vectors:
+  # Helping vector:
   i <- 1:(sampSize-1)
-  # The prairwise difference:
+  # The pairwise difference:
   res <- 1/choose(sampSize,2)*sum(i*(sampSize-i)*SFS)
   return(res)
 }

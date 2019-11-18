@@ -2,7 +2,7 @@
 #'
 #' @description
 #' \code{simDNAseq} simulates a segregating sites matrix consisting of \code{n}
-#' sequences based on the type of population size.
+#' sequences based on how the population size develops.
 #'
 #' @usage
 #' simDNAseq(n, seqLen, mutRate, popType, ...)
@@ -51,7 +51,7 @@
 #' site, and the number 0 indicates that no mutation occured.
 #'
 #' @return
-#' \code{simDNAseq} returns a simulated a \code{n} times \code{seqLen} segregating
+#' \code{simDNAseq} returns a simulated \code{n} times \code{seqLen} segregating
 #' sites matrix. See details.
 #'
 #' @examples

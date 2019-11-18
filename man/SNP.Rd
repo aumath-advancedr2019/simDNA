@@ -7,12 +7,12 @@
 SNP(segSites)
 }
 \arguments{
-\item{segSites}{Segregating sites matrix. See details.}
+\item{segSites}{segregating sites matrix. See details.}
 }
 \value{
 List containing the following components:
-\item{positions}{The positions on which one or more mutations occurred.}
-\item{SNPmat}{The single-nucleotide polymorphism matrix.}
+\item{positions}{the positions on which one or more mutations occurred.}
+\item{SNPmat}{the single-nucleotide polymorphism matrix.}
 }
 \description{
 The function calculates the SNP matrix.
