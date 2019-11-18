@@ -37,6 +37,10 @@
 #' @export
 
 pairwDiff <- function(SFS){
+  # Make error if input is not a vector
+  if(is.vector(SFS)=="FALSE"){
+    stop('Input should be a vector')
+  }
   # Make error if we have negative entries
   if(min(SFS)<0){
     stop('Entries in SFS must be natural numbers (0 included)')

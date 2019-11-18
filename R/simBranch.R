@@ -22,5 +22,5 @@ simBranch <- function(n, seqLen, mutRate, expRate, expansionTime, proportion, po
   if(tolower(popType)=="sudexppop"){
     return(simBranchSudExpansion(n, expansionTime, proportion))
   }
-  else(warning("Type of population not defined"))
+  else(warning("Type of population not defined. Choose between 'fixedPop', 'varPop' and 'sudExpPop'."))
 }
