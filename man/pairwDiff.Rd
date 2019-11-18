@@ -17,10 +17,8 @@ The function calculates the pairwise difference based on the site
 frequency spectrum.
 }
 \details{
-The site frequency spectrum is a vector of length \eqn{n-1}, where
-\eqn{n} is the sample size. The \eqn{i}'th entry is the number of
-segregating sites where a mutation occur in \eqn{i} sequences, and
-thus all entries must be natural numbers (0 included).
+See \code{\link{SFS}} for explanation of the site frequency spectrum.
+
 If one runs \code{pairwDiff}
 with a vector that contains anything other than natural numbers,
 an error will occur.
