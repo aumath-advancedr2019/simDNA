@@ -4,16 +4,27 @@
 \alias{plot.DNAmat_class}
 \title{Site frequency spectrum plot}
 \usage{
-## S3 method for class 'DNAmat_class'
-plot(DNAmat, xlab="Index i", ylab="Number of i-tons",
-main="Site frequency spectrum", ...)
+\method{plot}{DNAmat_class}(DNAmat, xlab = "Index i",
+  ylab = "Number of i-tons", main = "Site frequency spectrum", ...)
 }
 \arguments{
 \item{DNAmat}{matrix; either a single-nucleotide polymorphism matrix or a segregating
 sites matrix. See \code{\link{SNP}} for explanation.}
+
+\item{xlab}{a title for the x axis. Is by default "Index i". See \code{\link[graphics]{title}}.}
+
+\item{ylab}{a title for the y axis. Is by default "Number of i-tons". See \code{\link[graphics]{title}}.}
+
+\item{main}{an overall title for the plot. Is by default "Site frequency spectrum". See \code{\link[graphics]{title}}.}
+
+\item{...}{arguments passed on from \code{\link[graphics]{plot}}.}
 }
 \description{
 Plots the site frequency spectrum of \code{DNAmat}.
+}
+\details{
+The terminology "Number of i-tons" corresponds to the i'th entry in the site
+frequency spectrum. See \code{\link{SFS}} for further explanation.
 }
 \examples{
 plot(simDNAseq(n = 8, seqLen = 20, mutRate = 5,
@@ -23,16 +34,7 @@ plot(simDNAseq(n = 8, seqLen = 20, mutRate = 5,
 SegSitesMat <- matrix(sample(x=c(0, 1), size=26*12,
                       replace=TRUE, prob=c(0.9, 0.1)),
                       nrow=12, ncol=26, byrow=TRUE)
-plot.DNAmat_class(SegSitesMat)
-
-
-SNPmat <- matrix(c(1, 0, 0, 1, 1, 0, 0,
-                   0, 1, 0, 1, 0, 0, 0,
-                   0, 0, 1, 0, 0, 1, 1,
-                   1, 0, 0, 0, 0, 0, 1,
-                   1, 0, 0, 1, 0, 0, 0,
-                   1, 0, 1, 1, 0, 1, 0), nrow=6, ncol=7, byrow=TRUE)
-class(SNPmat) <- "DNAmat_class"
-plot(SNPmat, main="SFS of SNP matrix")
+class(SegSitesMat) <- "DNAmat_class"
+plot(SegSitesMat)
 
 }
