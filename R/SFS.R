@@ -54,5 +54,6 @@ SFS <- function(DNAmat){
     # i'th entry of the SFS is the number of times we observed i mutations
     res[dat[,1]] <- dat[,2]
   }
+  class(res) <- c("SFS_class", class(res))
   return(res)
 }

@@ -35,7 +35,7 @@
 
 plot.SFS_class <- function(SFS, xlab="Index i", ylab="Number of i-tons",
                               main="Site frequency spectrum", ...){
-  plot(SFS, xlab=xlab, ylab=ylab, main=main, type="h", yaxt="n", xaxt="n", ...)
+  plot.default(SFS, xlab=xlab, ylab=ylab, main=main, type="h", yaxt="n", xaxt="n", ...)
   axis(side=2, at=c(0:max(SFS)), labels=c(0:max(SFS)))
   axis(side=1, at=c(1:length(SFS)), labels=c(1:length(SFS)))
 }

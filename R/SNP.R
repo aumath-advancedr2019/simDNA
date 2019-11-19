@@ -42,5 +42,6 @@ SNP <- function(segSites){
   res <- list()
   res$positions <- positions
   res$SNPmat <- mat
+  class(res) <- c("DNAmat_class", class(res))
   return(res)
 }

@@ -12,10 +12,15 @@
 #' \itemize{
 #'    \item \code{\link{mutRate}}
 #'    \item \code{\link{pairwDiff}}
+#'    \item \code{\link{plot.DNAmat_class}}
+#'    \item \code{\link{plot.SFS_class}}
 #'    \item \code{\link{print.DNAmat_class}}
+#'    \item \code{\link{print.SFS_class}}
 #'    \item \code{\link{SFS}}
 #'    \item \code{\link{simDNAseq}}
 #'    \item \code{\link{SNP}}
+#'    \item \code{\link{summary.DNAmat_class}}
+#'    \item \code{\link{summary.SFS_class}}
 #'    \item \code{\link{TajimaD}}
 #' }
 #'
