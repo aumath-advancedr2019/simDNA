@@ -32,6 +32,7 @@
 #' @export
 
 pairwDiff <- function(SFS){
+  SFS <- SFS[1:length(SFS)]
   # Make error if input is not a vector
   if(is.vector(SFS)=="FALSE"){
     stop('Input should be a vector')

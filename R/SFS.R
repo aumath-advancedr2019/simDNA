@@ -35,6 +35,11 @@
 #' @export
 
 SFS <- function(DNAmat){
+  DNAmat <- DNAmat[1:nrow(DNAmat),1:ncol(DNAmat)]
+  # Make error if input is not a matrix
+  if(is.matrix(DNAmat)=="FALSE"){
+    stop('Input should be a matrix')
+  }
   # Count how many mutations are present in each position
   count <- colSums(DNAmat)
   # If there is anything other than 0's and 1's in the matrix, throw an error

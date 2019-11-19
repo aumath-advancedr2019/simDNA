@@ -29,6 +29,11 @@
 #' @export
 
 SNP <- function(segSites){
+  segSites <- segSites[1:nrow(segSites),1:ncol(segSites)]
+  # Make error if input is not a matrix
+  if(is.matrix(segSites)=="FALSE"){
+    stop('Input should be a matrix')
+  }
   # Count how many mutations are present in each position
   count <- colSums(segSites)
   # The positions on which we have a mutation

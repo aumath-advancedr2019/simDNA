@@ -35,6 +35,7 @@
 plot.DNAmat_class <- function(DNAmat, xlab="Index i", ylab="Number of i-tons",
                               main="Site frequency spectrum", ...){
   sfs <- SFS(DNAmat)
+  sfs <- sfs[1:length(sfs)]
   plot(sfs, xlab=xlab, ylab=ylab, main=main, type="h", yaxt="n", xaxt="n", ...)
   axis(side=2, at=c(0:max(sfs)), labels=c(0:max(sfs)))
   axis(side=1, at=c(1:length(sfs)), labels=c(1:length(sfs)))
