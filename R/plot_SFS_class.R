@@ -22,9 +22,7 @@
 #' DNAmat <- simDNAseq(n = 24, seqLen = 58, mutRate = 7,
 #'                     popType = "sudExpPop", expansionTime = 3,
 #'                     proportion = 0.6)
-#' DNAmatSFS <- SFS(DNAmat)
-#' class(DNAmatSFS) <- "SFS_class"
-#' plot(DNAmatSFS, col="green")
+#' plot(SFS(DNAmat), col="green")
 #'
 #'
 #' SFSvec <- c(2, 4, 1, 0, 0)
