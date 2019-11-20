@@ -1,9 +1,11 @@
 #' Summary statistics
 #'
-#' @description Gives summary statistics useful for analyzing DNA.
+#' @description
+#' Prints summary statistics useful for analyzing DNA
+#' and returns themn in a list.
 #'
 #' @usage
-#' ## S3 method for class SFS_class
+#' ## S3 method for class 'SFS_class'
 #' summary(SFS)
 #'
 #' @param SFS
@@ -14,6 +16,12 @@
 #' class(SFS) <- "SFS_class"
 #' summary(SFS)
 #'
+#' @return
+#' List containing the following components:
+#' \item{Watterson}{Watterson's estimator.}
+#' \item{pairwDiff}{The pairwise difference estimator.}
+#' \item{TajimaD}{Tajima's D}
+#'
 #' @seealso
 #' \code{\link{mutRate}}, \code{\link{TajimaD}}
 #'
@@ -22,10 +30,15 @@
 
 summary.SFS_class <- function(SFS){
   SFS <- SFS[1:length(SFS)]
-  cat("Summary statistics:\n")
+  res <- list()
   estMutRate <- mutRate(SFS)
+  res$Watterson <- estMutRate$Watterson
+  res$pairwDiff <- estMutRate$pairwDiff
+  res$TajimaD <- TajimaD(SFS)
+  cat("Summary statistics:\n")
   cat("Estimators of the mutation rate:\n",
       "Watterson's estimator:", estMutRate$Watterson, "\n",
       "Pairwise difference estimator:", estMutRate$pairwDiff, "\n")
-  cat("Tajima's D:", TajimaD(SFS), "\n")
+  cat("Tajima's D:", res$TajimaD, "\n")
+  return(res)
 }

@@ -4,14 +4,21 @@
 \alias{summary.SFS_class}
 \title{Summary statistics}
 \usage{
-## S3 method for class SFS_class
+## S3 method for class 'SFS_class'
 summary(SFS)
 }
 \arguments{
 \item{SFS}{vector with the site frequency spectrum.}
 }
+\value{
+List containing the following components:
+\item{Watterson}{Watterson's estimator.}
+\item{pairwDiff}{The pairwise difference estimator.}
+\item{TajimaD}{Tajima's D}
+}
 \description{
-Gives summary statistics useful for analyzing DNA.
+Prints summary statistics useful for analyzing DNA
+and returns themn in a list.
 }
 \examples{
 SFS <- c(2,1,0,0,0,1,0,0)

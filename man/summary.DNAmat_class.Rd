@@ -4,15 +4,23 @@
 \alias{summary.DNAmat_class}
 \title{Summary statistics}
 \usage{
-## S3 method for class DNAmat_class
+## S3 method for class 'DNAmat_class'
 summary(DNAmat)
 }
 \arguments{
 \item{DNAmat}{matrix; either a single-nucleotide polymorphism matrix or a segregating
 sites matrix.}
 }
+\value{
+List containing the following components:
+\item{SFS}{The site frequency spectrum}
+\item{Watterson}{Watterson's estimator.}
+\item{pairwDiff}{The pairwise difference estimator.}
+\item{TajimaD}{Tajima's D}
+}
 \description{
-Gives summary statistics useful for analyzing DNA.
+Prints summary statistics useful for analyzing DNA
+and returns them in a list.
 }
 \examples{
 DNAmat <- matrix(c(0,1,0,0,
