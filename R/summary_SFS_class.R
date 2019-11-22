@@ -44,6 +44,5 @@ summary.SFS_class <- function(SFS){
   res$TajimaD <- TajimaD(SFS)
   # Assign its own class to ensure that we only print at appropriate times
   class(res) <- "summary_SFS"
-  # Use invisible to ensure correct printing
-  return(invisible(res))
+  res
 }

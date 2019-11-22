@@ -46,5 +46,5 @@ summary.DNAmat_class <- function(DNAmat){
   res$pairwDiff <- estMutRate$pairwDiff
   res$TajimaD <- TajimaD(SFS)
   class(res) <- "summary_DNAmat"
-  return(invisible(res))
+  res
 }
