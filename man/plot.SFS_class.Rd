@@ -8,7 +8,7 @@
   ylab = "Number of i-tons", main = "Site frequency spectrum", ...)
 }
 \arguments{
-\item{SFS}{vector with the site frequency spectrum.}
+\item{SFS}{vector with the site frequency spectrum of class 'SFS_class'.}
 
 \item{xlab}{a title for the x axis. Is by default "Index i". See \code{\link[graphics]{title}}.}
 
@@ -26,12 +26,14 @@ The terminology "Number of i-tons" corresponds to the i'th entry in the site
 frequency spectrum. See \code{\link{SFS}} for further explanation.
 }
 \examples{
+# Using the functions simDNAseq and SFS:
 DNAmat <- simDNAseq(n = 24, seqLen = 58, mutRate = 7,
                     popType = "sudExpPop", expansionTime = 3,
                     proportion = 0.6)
 plot(SFS(DNAmat), col="green")
 
 
+# Creating the SFS vector by hand:
 SFSvec <- c(2, 4, 1, 0, 0)
 class(SFSvec) <- "SFS_class"
 plot(SFSvec)

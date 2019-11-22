@@ -11,7 +11,7 @@ SFS(DNAmat)
 sites matrix. See details.}
 }
 \value{
-The site frequency spectrum.
+The site frequency spectrum with class 'SFS_class'.
 }
 \description{
 The function calculates the site frequency spectrum.

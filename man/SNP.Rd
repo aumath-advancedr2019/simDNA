@@ -12,7 +12,7 @@ SNP(segSites)
 \value{
 List containing the following components:
 \item{positions}{the positions on which one or more mutations occurred.}
-\item{SNPmat}{the single-nucleotide polymorphism matrix.}
+\item{SNPmat}{the single-nucleotide polymorphism matrix with class 'DNAmat_class'.}
 }
 \description{
 The function calculates the SNP matrix.

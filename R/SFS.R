@@ -27,7 +27,7 @@
 #'
 #'
 #' @return
-#' The site frequency spectrum.
+#' The site frequency spectrum with class 'SFS_class'.
 #'
 #' @examples
 #' SFS(matrix(c(0,1,0,1,0,0,0,0,0),nrow=3))

@@ -11,7 +11,7 @@
 #' @return
 #' List containing the following components:
 #' \item{positions}{the positions on which one or more mutations occurred.}
-#' \item{SNPmat}{the single-nucleotide polymorphism matrix.}
+#' \item{SNPmat}{the single-nucleotide polymorphism matrix with class 'DNAmat_class'.}
 #'
 #' @examples
 #' SNP(matrix(c(0,0,0,1,0,0,0,0,1),nrow=3))
