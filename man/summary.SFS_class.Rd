@@ -17,10 +17,17 @@ List containing the following components:
 \item{TajimaD}{Tajima's D}
 }
 \description{
-Prints summary statistics useful for analyzing DNA
-and returns themn in a list.
+Calculates summary statistics useful for analyzing DNA.
 }
 \examples{
+# Using the function SFS:
+DNAmat <- matrix(c(0,1,0,0,
+                   0,1,0,1,
+                   0,0,0,0,
+                   0,0,0,0), 4,4, byrow=TRUE)
+summary(SFS(DNAmat))
+
+Creating SFS by hand:
 SFS <- c(2,1,0,0,0,1,0,0)
 class(SFS) <- "SFS_class"
 summary(SFS)

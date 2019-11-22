@@ -1,8 +1,7 @@
 #' Summary statistics
 #'
 #' @description
-#' Prints summary statistics useful for analyzing DNA
-#' and returns themn in a list.
+#' Calculates summary statistics useful for analyzing DNA.
 #'
 #' @usage
 #' ## S3 method for class 'SFS_class'
@@ -12,6 +11,14 @@
 #' vector with the site frequency spectrum.
 #'
 #' @examples
+#' # Using the function SFS:
+#' DNAmat <- matrix(c(0,1,0,0,
+#'                    0,1,0,1,
+#'                    0,0,0,0,
+#'                    0,0,0,0), 4,4, byrow=TRUE)
+#' summary(SFS(DNAmat))
+#'
+#' Creating SFS by hand:
 #' SFS <- c(2,1,0,0,0,1,0,0)
 #' class(SFS) <- "SFS_class"
 #' summary(SFS)
@@ -35,10 +42,8 @@ summary.SFS_class <- function(SFS){
   res$Watterson <- estMutRate$Watterson
   res$pairwDiff <- estMutRate$pairwDiff
   res$TajimaD <- TajimaD(SFS)
-  cat("Summary statistics:\n")
-  cat("Estimators of the mutation rate:\n",
-      "Watterson's estimator:", estMutRate$Watterson, "\n",
-      "Pairwise difference estimator:", estMutRate$pairwDiff, "\n")
-  cat("Tajima's D:", res$TajimaD, "\n")
-  return(res)
+  # Assign its own class to ensure that we only print at appropriate times
+  class(res) <- "summary_SFS"
+  # Use invisible to ensure correct printing
+  return(invisible(res))
 }

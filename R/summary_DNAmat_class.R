@@ -45,11 +45,6 @@ summary.DNAmat_class <- function(DNAmat){
   res$Watterson <- estMutRate$Watterson
   res$pairwDiff <- estMutRate$pairwDiff
   res$TajimaD <- TajimaD(SFS)
-  cat("Summary statistics:\n")
-  cat("Site frequency spectrum:", SFS, "\n")
-  cat("Estimators of the scaled mutation rate:\n",
-      "Watterson's estimator:", res$Watterson, "\n",
-      "Pairwise difference estimator:", res$pairwDiff, "\n")
-  cat("Tajima's D:", res$TajimaD, "\n")
-  return(res)
+  class(res) <- "summary_DNAmat"
+  return(invisible(res))
 }
