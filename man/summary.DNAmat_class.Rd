@@ -9,7 +9,7 @@ summary(DNAmat)
 }
 \arguments{
 \item{DNAmat}{matrix; either a single-nucleotide polymorphism matrix or a segregating
-sites matrix.}
+sites matrix of class 'DNAmat_class'.}
 }
 \value{
 List containing the following components:
@@ -19,10 +19,14 @@ List containing the following components:
 \item{TajimaD}{Tajima's D}
 }
 \description{
-Prints summary statistics useful for analyzing DNA
-and returns them in a list.
+Calculates summary statistics useful for analyzing DNA.
 }
 \examples{
+# Using the function simDNAseq:
+summary(simDNAseq(n = 12, seqLen = 20, mutRate = 5,
+               popType = "varPop", expRate = 1.5))
+
+# Creating a segregating sites matrix by hand:
 DNAmat <- matrix(c(0,1,0,0,
                    0,1,0,1,
                    0,0,0,0,

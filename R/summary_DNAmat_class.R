@@ -1,8 +1,7 @@
 #' Summary statistics
 #'
 #' @description
-#' Prints summary statistics useful for analyzing DNA
-#' and returns them in a list.
+#' Calculates summary statistics useful for analyzing DNA.
 #'
 #' @usage
 #' ## S3 method for class 'DNAmat_class'
@@ -10,7 +9,7 @@
 #'
 #' @param DNAmat
 #' matrix; either a single-nucleotide polymorphism matrix or a segregating
-#' sites matrix.
+#' sites matrix of class 'DNAmat_class'.
 #'
 #' @return
 #' List containing the following components:
@@ -20,6 +19,11 @@
 #' \item{TajimaD}{Tajima's D}
 #'
 #' @examples
+#' # Using the function simDNAseq:
+#' summary(simDNAseq(n = 12, seqLen = 20, mutRate = 5,
+#'                popType = "varPop", expRate = 1.5))
+#'
+#' # Creating a segregating sites matrix by hand:
 #' DNAmat <- matrix(c(0,1,0,0,
 #'                    0,1,0,1,
 #'                    0,0,0,0,
@@ -47,4 +51,5 @@ summary.DNAmat_class <- function(DNAmat){
       "Watterson's estimator:", res$Watterson, "\n",
       "Pairwise difference estimator:", res$pairwDiff, "\n")
   cat("Tajima's D:", res$TajimaD, "\n")
+  return(res)
 }
