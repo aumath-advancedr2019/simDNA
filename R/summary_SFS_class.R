@@ -8,7 +8,7 @@
 #' summary(SFS)
 #'
 #' @param SFS
-#' vector with the site frequency spectrum.
+#' vector with the site frequency spectrum of class 'SFS_class'.
 #'
 #' @examples
 #' # Using the function SFS:

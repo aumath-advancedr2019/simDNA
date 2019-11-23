@@ -14,3 +14,4 @@ print.summary_DNAmat <- function(res){
       "Pairwise difference estimator:", res$pairwDiff, "\n")
   cat("Tajima's D:", res$TajimaD, "\n")
 }
+

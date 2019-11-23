@@ -8,7 +8,7 @@
 summary(SFS)
 }
 \arguments{
-\item{SFS}{vector with the site frequency spectrum.}
+\item{SFS}{vector with the site frequency spectrum of class 'SFS_class'.}
 }
 \value{
 List containing the following components:
