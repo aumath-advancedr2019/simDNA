@@ -4,13 +4,16 @@ Version: 0.2.0
 Authors@R: c( 
     person(given = "Elias",
            family = "Arildskov",
-           email = "au542132@uni.au.dk"),
+           email = "au542132@uni.au.dk",
+           role= c("cre","aut")),
     person(given = "Camilla",
            family = "P. Kudahl",
-           email = "au544603@uni.au.dk"),
+           email = "au544603@uni.au.dk",
+           role= c("aut")),
     person(given = "Maiken",
            family = "B. Poulsen",
-           email = "au546148@uni.au.dk"))
+           email = "au546148@uni.au.dk",
+           role= c("aut")))
 Description: Contains function to simulate segregating sites matrices for various population types. It also contains functions to analyze DNA based on segregating sites matrices or the site frequency spectrum.
 License: GPL
 Encoding: UTF-8
@@ -18,3 +21,5 @@ LazyData: true
 RoxygenNote: 6.1.1
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
+URL: https://aumath-advancedr2019.github.io/simDNA/, https://github.com/aumath-advancedr2019/simDNA
+BugReports: https://github.com/aumath-advancedr2019/simDNA/issues

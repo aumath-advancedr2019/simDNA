@@ -62,7 +62,14 @@
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/aumath-advancedr2019/simDNA">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -78,7 +85,7 @@
       <h1>simulateDNA</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/aumath-advancedr2019/simDNA/blob/master/vignettes/simulateDNA.Rmd"><code>vignettes/simulateDNA.Rmd</code></a></small>
       <div class="hidden name"><code>simulateDNA.Rmd</code></div>
 
     </div>
@@ -106,25 +113,25 @@
 <span class="co">#&gt;       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13]</span>
 <span class="co">#&gt;  [1,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
 <span class="co">#&gt;  [2,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
-<span class="co">#&gt;  [3,]    1    0    0    0    0    0    0    0    0     0     0     0     0</span>
-<span class="co">#&gt;  [4,]    0    0    0    0    0    0    0    0    1     0     0     0     0</span>
+<span class="co">#&gt;  [3,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
+<span class="co">#&gt;  [4,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
 <span class="co">#&gt;  [5,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
-<span class="co">#&gt;  [6,]    0    0    0    0    0    0    0    0    0     1     0     0     0</span>
+<span class="co">#&gt;  [6,]    0    0    0    0    0    0    0    0    0     0     0     1     0</span>
 <span class="co">#&gt;  [7,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
-<span class="co">#&gt;  [8,]    0    0    0    0    0    0    0    0    0     0     0     0     1</span>
+<span class="co">#&gt;  [8,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
 <span class="co">#&gt;  [9,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
 <span class="co">#&gt; [10,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
 <span class="co">#&gt;       [,14] [,15] [,16] [,17] [,18] [,19] [,20] [,21] [,22]</span>
 <span class="co">#&gt;  [1,]     0     0     0     0     0     0     0     0     0</span>
 <span class="co">#&gt;  [2,]     0     0     0     0     0     0     0     0     0</span>
-<span class="co">#&gt;  [3,]     0     0     0     0     0     0     1     0     0</span>
+<span class="co">#&gt;  [3,]     0     0     0     1     0     0     0     0     0</span>
 <span class="co">#&gt;  [4,]     0     0     0     0     0     0     0     0     0</span>
 <span class="co">#&gt;  [5,]     0     0     0     0     0     0     0     0     0</span>
 <span class="co">#&gt;  [6,]     0     0     0     0     0     0     0     0     0</span>
 <span class="co">#&gt;  [7,]     0     0     0     0     0     0     0     0     0</span>
 <span class="co">#&gt;  [8,]     0     0     0     0     0     0     0     0     0</span>
-<span class="co">#&gt;  [9,]     0     0     0     0     0     0     0     0     0</span>
-<span class="co">#&gt; [10,]     0     0     0     0     0     0     0     0     1</span></code></pre></div>
+<span class="co">#&gt;  [9,]     0     0     0     1     0     0     0     0     0</span>
+<span class="co">#&gt; [10,]     0     0     0     0     0     0     0     0     0</span></code></pre></div>
 </div>
 <div id="variable-population-size" class="section level3">
 <h3 class="hasAnchor">
@@ -147,23 +154,23 @@
 <p>When specifying the population type to be ‘varPop’ in the function simDNAseq the simulated branch lengths come from the algorithm using the above relative size function. We use these branch lengths to compute the segregating sites matrix. An example hereof could be</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/simDNAseq.html">simDNAseq</a></span>(<span class="dt">n =</span> <span class="dv">8</span>, <span class="dt">seqLen =</span> <span class="dv">20</span>, <span class="dt">mutRate =</span> <span class="dv">5</span>, <span class="dt">popType =</span> <span class="st">"varPop"</span>, <span class="dt">expRate =</span> <span class="fl">1.5</span>)
 <span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13]</span>
-<span class="co">#&gt; [1,]    0    0    0    1    0    0    0    0    1     0     0     0     0</span>
+<span class="co">#&gt; [1,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
 <span class="co">#&gt; [2,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
 <span class="co">#&gt; [3,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
-<span class="co">#&gt; [4,]    0    0    0    0    0    1    0    0    0     0     0     0     0</span>
-<span class="co">#&gt; [5,]    0    0    0    0    0    1    0    0    0     0     0     0     0</span>
-<span class="co">#&gt; [6,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
-<span class="co">#&gt; [7,]    0    0    0    0    0    1    0    0    0     0     0     0     0</span>
-<span class="co">#&gt; [8,]    0    0    0    0    0    0    0    0    1     0     0     0     0</span>
+<span class="co">#&gt; [4,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
+<span class="co">#&gt; [5,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
+<span class="co">#&gt; [6,]    0    0    0    1    0    0    0    0    0     0     0     0     1</span>
+<span class="co">#&gt; [7,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
+<span class="co">#&gt; [8,]    0    0    0    1    0    0    0    0    0     0     0     0     1</span>
 <span class="co">#&gt;      [,14] [,15] [,16] [,17] [,18] [,19] [,20]</span>
-<span class="co">#&gt; [1,]     0     0     0     0     0     1     0</span>
-<span class="co">#&gt; [2,]     0     0     0     0     0     0     0</span>
-<span class="co">#&gt; [3,]     0     0     0     0     0     0     0</span>
-<span class="co">#&gt; [4,]     0     0     0     0     0     0     0</span>
+<span class="co">#&gt; [1,]     0     0     0     0     0     0     0</span>
+<span class="co">#&gt; [2,]     0     1     0     0     0     0     0</span>
+<span class="co">#&gt; [3,]     0     1     0     0     0     0     0</span>
+<span class="co">#&gt; [4,]     0     1     0     0     0     0     0</span>
 <span class="co">#&gt; [5,]     0     0     0     0     0     0     0</span>
 <span class="co">#&gt; [6,]     0     0     0     0     0     0     0</span>
 <span class="co">#&gt; [7,]     0     0     0     0     0     0     0</span>
-<span class="co">#&gt; [8,]     0     0     0     0     0     1     0</span></code></pre></div>
+<span class="co">#&gt; [8,]     0     0     0     0     0     0     0</span></code></pre></div>
 </div>
 <div id="suddenly-expanded-population-size" class="section level4">
 <h4 class="hasAnchor">
@@ -176,63 +183,63 @@
 <p>When specifying the population type to be ‘sudExpPop’ in the function simDNAseq, the simulated branch lengths come from the algorithm using the above relative size function. We use these lengths to compute the segregating sites matrix. An example hereof could be</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/simDNAseq.html">simDNAseq</a></span>(<span class="dt">n =</span> <span class="dv">25</span>, <span class="dt">seqLen =</span> <span class="dv">30</span>, <span class="dt">mutRate =</span> <span class="dv">8</span>, <span class="dt">popType =</span> <span class="st">"sudExpPop"</span>, <span class="dt">expansionTime =</span> <span class="dv">2</span>, <span class="dt">proportion =</span> <span class="fl">0.9</span>)
 <span class="co">#&gt;       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13]</span>
-<span class="co">#&gt;  [1,]    0    0    0    0    0    0    0    1    0     0     0     0     0</span>
-<span class="co">#&gt;  [2,]    0    0    0    0    0    0    0    1    0     0     0     0     0</span>
-<span class="co">#&gt;  [3,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
-<span class="co">#&gt;  [4,]    0    1    0    0    0    0    0    0    0     0     0     0     0</span>
-<span class="co">#&gt;  [5,]    0    0    0    0    0    0    0    1    0     0     0     0     0</span>
+<span class="co">#&gt;  [1,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
+<span class="co">#&gt;  [2,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
+<span class="co">#&gt;  [3,]    0    0    0    0    0    0    1    0    0     0     0     0     0</span>
+<span class="co">#&gt;  [4,]    1    0    0    0    0    0    0    0    0     0     0     0     0</span>
+<span class="co">#&gt;  [5,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
 <span class="co">#&gt;  [6,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
-<span class="co">#&gt;  [7,]    0    0    0    0    0    0    0    1    0     0     0     0     0</span>
-<span class="co">#&gt;  [8,]    0    0    0    0    0    0    0    1    0     0     0     0     0</span>
+<span class="co">#&gt;  [7,]    0    0    0    1    0    0    0    0    0     0     1     0     0</span>
+<span class="co">#&gt;  [8,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
 <span class="co">#&gt;  [9,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
-<span class="co">#&gt; [10,]    0    0    0    1    0    0    1    0    0     0     0     0     0</span>
-<span class="co">#&gt; [11,]    0    0    0    0    0    0    0    1    1     0     0     0     0</span>
-<span class="co">#&gt; [12,]    0    0    0    0    1    0    0    1    0     0     0     0     0</span>
-<span class="co">#&gt; [13,]    0    0    0    0    0    0    1    0    0     0     0     0     0</span>
-<span class="co">#&gt; [14,]    0    0    0    0    0    0    0    1    0     0     0     1     0</span>
-<span class="co">#&gt; [15,]    0    0    0    0    0    0    0    0    0     1     0     0     0</span>
-<span class="co">#&gt; [16,]    0    0    0    0    0    0    0    0    0     0     1     0     0</span>
-<span class="co">#&gt; [17,]    0    0    0    0    0    0    0    1    0     0     0     0     0</span>
-<span class="co">#&gt; [18,]    0    0    1    0    0    0    0    1    0     0     0     0     0</span>
-<span class="co">#&gt; [19,]    0    0    0    0    0    0    0    1    0     0     0     0     0</span>
-<span class="co">#&gt; [20,]    0    0    0    0    0    0    0    1    0     0     0     0     0</span>
-<span class="co">#&gt; [21,]    1    0    0    0    0    1    0    0    0     0     0     0     0</span>
+<span class="co">#&gt; [10,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
+<span class="co">#&gt; [11,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
+<span class="co">#&gt; [12,]    0    0    1    0    0    0    0    0    0     0     0     0     0</span>
+<span class="co">#&gt; [13,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
+<span class="co">#&gt; [14,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
+<span class="co">#&gt; [15,]    1    0    0    0    0    0    0    0    0     0     0     0     0</span>
+<span class="co">#&gt; [16,]    0    0    0    0    0    0    0    0    0     0     0     0     1</span>
+<span class="co">#&gt; [17,]    0    1    0    0    0    0    0    0    0     0     0     0     0</span>
+<span class="co">#&gt; [18,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
+<span class="co">#&gt; [19,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
+<span class="co">#&gt; [20,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
+<span class="co">#&gt; [21,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
 <span class="co">#&gt; [22,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
-<span class="co">#&gt; [23,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
-<span class="co">#&gt; [24,]    0    0    0    0    0    0    0    1    0     0     0     0     0</span>
-<span class="co">#&gt; [25,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
+<span class="co">#&gt; [23,]    0    0    0    0    0    0    0    0    0     1     0     0     0</span>
+<span class="co">#&gt; [24,]    0    0    0    0    0    0    0    0    0     0     0     0     0</span>
+<span class="co">#&gt; [25,]    0    0    0    0    0    0    0    1    0     0     0     0     0</span>
 <span class="co">#&gt;       [,14] [,15] [,16] [,17] [,18] [,19] [,20] [,21] [,22] [,23] [,24]</span>
 <span class="co">#&gt;  [1,]     0     0     0     0     0     0     0     0     0     0     0</span>
-<span class="co">#&gt;  [2,]     0     0     0     0     0     0     0     0     0     0     0</span>
-<span class="co">#&gt;  [3,]     0     0     0     0     0     0     0     0     0     0     0</span>
+<span class="co">#&gt;  [2,]     0     0     0     0     0     1     0     0     0     0     0</span>
+<span class="co">#&gt;  [3,]     0     0     0     0     0     1     0     0     0     0     0</span>
 <span class="co">#&gt;  [4,]     0     0     0     0     0     0     0     0     0     0     0</span>
-<span class="co">#&gt;  [5,]     0     0     0     0     0     0     0     0     0     1     0</span>
+<span class="co">#&gt;  [5,]     0     0     0     0     0     0     0     0     0     0     0</span>
 <span class="co">#&gt;  [6,]     0     0     0     0     0     0     0     0     0     0     0</span>
-<span class="co">#&gt;  [7,]     0     0     0     0     0     0     0     1     0     0     0</span>
-<span class="co">#&gt;  [8,]     0     0     0     1     0     0     0     0     0     0     0</span>
-<span class="co">#&gt;  [9,]     0     0     1     0     0     0     0     0     0     0     0</span>
-<span class="co">#&gt; [10,]     0     0     0     0     0     0     0     0     0     0     0</span>
-<span class="co">#&gt; [11,]     0     0     0     0     0     0     1     0     0     0     0</span>
+<span class="co">#&gt;  [7,]     0     0     0     0     0     0     0     0     0     0     0</span>
+<span class="co">#&gt;  [8,]     0     0     0     0     0     0     0     0     0     0     0</span>
+<span class="co">#&gt;  [9,]     0     0     1     0     0     0     1     0     0     0     0</span>
+<span class="co">#&gt; [10,]     0     0     0     0     0     0     0     1     0     0     0</span>
+<span class="co">#&gt; [11,]     0     0     0     0     0     0     0     0     0     0     0</span>
 <span class="co">#&gt; [12,]     0     0     0     0     0     0     0     0     0     0     0</span>
 <span class="co">#&gt; [13,]     0     0     0     0     0     0     0     0     0     0     0</span>
-<span class="co">#&gt; [14,]     1     0     0     0     0     0     0     0     0     0     0</span>
-<span class="co">#&gt; [15,]     0     0     0     0     1     0     0     0     0     0     0</span>
+<span class="co">#&gt; [14,]     0     0     0     0     0     0     0     0     0     0     0</span>
+<span class="co">#&gt; [15,]     0     0     0     0     0     0     0     0     0     0     0</span>
 <span class="co">#&gt; [16,]     0     0     0     0     0     1     0     0     0     0     0</span>
-<span class="co">#&gt; [17,]     0     0     0     0     0     0     0     0     0     0     0</span>
+<span class="co">#&gt; [17,]     0     0     0     0     0     1     0     0     0     0     0</span>
 <span class="co">#&gt; [18,]     0     0     0     0     0     0     0     0     0     0     0</span>
 <span class="co">#&gt; [19,]     0     0     0     0     0     0     0     0     0     0     0</span>
 <span class="co">#&gt; [20,]     0     0     0     0     0     0     0     0     0     0     0</span>
-<span class="co">#&gt; [21,]     0     0     0     0     0     0     0     0     0     0     1</span>
-<span class="co">#&gt; [22,]     0     1     0     0     0     0     0     0     0     0     0</span>
-<span class="co">#&gt; [23,]     0     0     1     0     0     0     0     0     0     0     0</span>
+<span class="co">#&gt; [21,]     0     0     0     0     0     0     0     0     0     0     0</span>
+<span class="co">#&gt; [22,]     0     0     0     0     0     0     0     0     0     0     0</span>
+<span class="co">#&gt; [23,]     0     1     0     0     0     0     0     0     0     0     0</span>
 <span class="co">#&gt; [24,]     0     0     0     0     0     0     0     0     0     0     0</span>
 <span class="co">#&gt; [25,]     0     0     0     0     0     0     0     0     0     0     0</span>
 <span class="co">#&gt;       [,25] [,26] [,27] [,28] [,29] [,30]</span>
-<span class="co">#&gt;  [1,]     0     0     0     0     0     0</span>
-<span class="co">#&gt;  [2,]     0     0     1     0     0     0</span>
+<span class="co">#&gt;  [1,]     0     0     0     0     0     1</span>
+<span class="co">#&gt;  [2,]     0     0     0     0     0     0</span>
 <span class="co">#&gt;  [3,]     0     0     0     0     0     0</span>
-<span class="co">#&gt;  [4,]     0     0     0     0     0     1</span>
-<span class="co">#&gt;  [5,]     0     0     0     1     0     0</span>
+<span class="co">#&gt;  [4,]     0     0     0     0     0     0</span>
+<span class="co">#&gt;  [5,]     0     0     0     0     0     0</span>
 <span class="co">#&gt;  [6,]     0     0     0     0     0     0</span>
 <span class="co">#&gt;  [7,]     0     0     0     0     0     0</span>
 <span class="co">#&gt;  [8,]     0     0     0     0     0     0</span>
@@ -241,17 +248,17 @@
 <span class="co">#&gt; [11,]     0     0     0     0     0     0</span>
 <span class="co">#&gt; [12,]     0     0     0     0     0     0</span>
 <span class="co">#&gt; [13,]     0     0     0     0     0     0</span>
-<span class="co">#&gt; [14,]     0     1     0     0     1     0</span>
+<span class="co">#&gt; [14,]     0     0     0     0     0     0</span>
 <span class="co">#&gt; [15,]     0     0     0     0     0     0</span>
 <span class="co">#&gt; [16,]     0     0     0     0     0     0</span>
-<span class="co">#&gt; [17,]     0     0     0     0     0     0</span>
-<span class="co">#&gt; [18,]     0     0     0     0     0     0</span>
+<span class="co">#&gt; [17,]     0     0     0     0     1     0</span>
+<span class="co">#&gt; [18,]     0     1     0     0     0     0</span>
 <span class="co">#&gt; [19,]     0     0     0     0     0     0</span>
 <span class="co">#&gt; [20,]     0     0     0     0     0     0</span>
-<span class="co">#&gt; [21,]     1     0     0     0     0     0</span>
+<span class="co">#&gt; [21,]     0     0     0     0     0     0</span>
 <span class="co">#&gt; [22,]     0     0     0     0     0     0</span>
 <span class="co">#&gt; [23,]     0     0     0     0     0     0</span>
-<span class="co">#&gt; [24,]     0     0     0     0     0     0</span>
+<span class="co">#&gt; [24,]     0     0     1     0     0     0</span>
 <span class="co">#&gt; [25,]     0     0     0     0     0     0</span></code></pre></div>
 </div>
 </div>
@@ -280,7 +287,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by .</p>
+  <p>Developed by Elias Arildskov, Camilla P. Kudahl, Maiken B. Poulsen.</p>
 </div>
 
 <div class="pkgdown">
