@@ -155,7 +155,25 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"></pre>
+    <pre class="examples"><div class='input'><span class='co'># Using the function SFS:</span>
+<span class='no'>DNAmat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,
+                   <span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,
+                   <span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,
+                   <span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>), <span class='fl'>4</span>,<span class='fl'>4</span>, <span class='kw'>byrow</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'><a href='SFS.html'>SFS</a></span>(<span class='no'>DNAmat</span>))</div><div class='output co'>#&gt; Summary statistics:
+#&gt; Estimators of the mutation rate:
+#&gt;  Watterson's estimator: 1.090909 
+#&gt;  Pairwise difference estimator: 1.166667 
+#&gt; Tajima's D: 0.5915801 </div><div class='input'>
+<span class='co'># Creating SFS by hand:</span>
+<span class='no'>SFS</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>0</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>SFS</span>) <span class='kw'>&lt;-</span> <span class='st'>"SFS_class"</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>SFS</span>)</div><div class='output co'>#&gt; Summary statistics:
+#&gt; Estimators of the mutation rate:
+#&gt;  Watterson's estimator: 1.471748 
+#&gt;  Pairwise difference estimator: 1.333333 
+#&gt; Tajima's D: -0.3822722 </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
