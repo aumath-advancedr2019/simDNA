@@ -1,7 +1,7 @@
 Package: simDNA
 Title: Simulate and analyze DNA
 Version: 0.2.0
-Authors@R: 
+Authors@R: c( 
     person(given = "Elias",
            family = "Arildskov",
            email = "au542132@uni.au.dk"),
@@ -10,7 +10,7 @@ Authors@R:
            email = "au544603@uni.au.dk"),
     person(given = "Maiken",
            family = "B. Poulsen",
-           email = "au546148@uni.au.dk")
+           email = "au546148@uni.au.dk"))
 Description: Contains function to simulate segregating sites matrices for various population types. It also contains functions to analyze DNA based on segregating sites matrices or the site frequency spectrum.
 License: GPL
 Encoding: UTF-8
