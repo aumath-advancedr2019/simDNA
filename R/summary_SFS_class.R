@@ -18,7 +18,7 @@
 #'                    0,0,0,0), 4,4, byrow=TRUE)
 #' summary(SFS(DNAmat))
 #'
-#' Creating SFS by hand:
+#' # Creating SFS by hand:
 #' SFS <- c(2,1,0,0,0,1,0,0)
 #' class(SFS) <- "SFS_class"
 #' summary(SFS)
